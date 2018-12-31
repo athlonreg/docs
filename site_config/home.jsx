@@ -28,33 +28,8 @@ export default {
       list: [
         {
           img: '/img/feature_transpart.png',
-          title: '特性1',
+          title: '特性',
           content: '特性1的简单概括',
-        },
-        {
-          img: '/img/feature_loadbalances.png',
-          title: '特性2',
-          content: '特性2的简单概括',
-        },
-        {
-          img: '/img/feature_service.png',
-          title: '特性3',
-          content: '特性3的简单概括',
-        },
-        {
-          img: '/img/feature_hogh.png',
-          title: '特性4',
-          content: '特性4的简单概括',
-        },
-        {
-          img: '/img/feature_runtime.png',
-          title: '特性5',
-          content: '特性5的简单概括',
-        },
-        {
-          img: '/img/feature_maintenance.png',
-          title: '特性6',
-          content: '特性6的简单概括',
         },
       ],
     },
@@ -64,7 +39,7 @@ export default {
       img: '/img/quick_start.png',
       button: {
         text: '阅读更多',
-        link: '/zh-cn/docs/demo1.html',
+        link: '/zh-cn/docs/CAS-5-3-4-install-and-deploy.html',
       },
     },
     users: {
@@ -72,37 +47,22 @@ export default {
       desc: <span>简单描述</span>,
       list: [
         '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
       ],
     },
   },
   'en-us': {
     brand: {
-      brandName: 'brandName',
-      briefIntroduction: 'some description of product',
+      brandName: '自动化持续集成平台',
+      briefIntroduction: '本系统用于项目开发流程，持续化的自动分析代码、执行测试和软件构建！',
       buttons: [
         {
           text: 'Quick Start',
-          link: '/en-us/docs/demo1.html',
+          link: '/en-us/docs/CAS-5-3-4-install-and-deploy.html',
           type: 'primary',
         },
         {
           text: 'View on Github',
-          link: '',
+          link: 'https://github.com/athlonreg',
           type: 'normal',
         },
       ],
@@ -116,35 +76,10 @@ export default {
       title: 'Feature List',
       list: [
         {
-          img: '/img/feature_transpart.png',
-          title: 'feature1',
-          content: 'feature description',
-        },
-        {
-          img: '/img/feature_loadbalances.png',
-          title: 'feature2',
-          content: 'feature description',
-        },
-        {
-          img: '/img/feature_service.png',
-          title: 'feature3',
-          content: 'feature description',
-        },
-        {
-          img: '/img/feature_hogh.png',
-          title: 'feature4',
-          content: 'feature description',
-        },
-        {
-          img: '/img/feature_runtime.png',
-          title: 'feature5',
-          content: 'feature description',
-        },
-        {
           img: '/img/feature_maintenance.png',
-          title: 'feature6',
+          title: 'feature',
           content: 'feature description',
-        }
+        },
       ]
     },
     start: {
@@ -153,28 +88,13 @@ export default {
       img: '/img/quick_start.png',
       button: {
         text: 'READ MORE',
-        link: '/en-us/docs/demo1.html',
+        link: '/en-us/docs/CAS-5-3-4-install-and-deploy.html',
       },
     },
     users: {
       title: 'users',
       desc: <span>some description</span>,
       list: [
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
-        '/img/users_alibaba.png',
         '/img/users_alibaba.png',
       ],
     },

@@ -15,7 +15,7 @@ export default {
       {
         key: 'docs',
         text: 'DOCS',
-        link: '/en-us/docs/CAS-5-3-4-install-and-deploy',
+        link: '/en-us/docs/CAS-5-3-4-install-and-deploy.html',
       },
       {
         key: 'blog',

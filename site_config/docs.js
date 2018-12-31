@@ -22,7 +22,7 @@ export default {
           },
           {
             title: 'TestLink 安装部署',
-            link: '/zh-cn/docs/TestLink-install-and-deploy.md.html',
+            link: '/zh-cn/docs/TestLink-install-and-deploy.html',
           },
           {
             title: 'TestLink 整合 LDAP 和 CAS 单点登录',
@@ -50,7 +50,7 @@ export default {
           },
           {
             title: 'CentOS 安装部署 Jenkins',
-            link: '/zh-cn/docs/Jenkins-configure-and-deploy.md.html',
+            link: '/zh-cn/docs/Jenkins-configure-and-deploy.html',
           },
           {
             title: 'Jenkins 整合 LDAP 和 CAS 单点登录',
@@ -71,16 +71,6 @@ export default {
           {
             title: 'iTerm2 + ohmyzsh + powerlevel9k + tmux 打造专属个性化终端',
             link: '/zh-cn/docs/Custom-terminal-on-your-mac.html',
-          },
-          {
-            title: 'dir',
-            opened: true,
-            children: [
-              {
-                title: 'demo3',
-                link: '/en-us/docs/dir/demo3.html',
-              },
-            ],
           },
         ],
       },
@@ -114,7 +104,7 @@ export default {
           },
           {
             title: 'TestLink 安装部署',
-            link: '/zh-cn/docs/TestLink-install-and-deploy.md.html',
+            link: '/zh-cn/docs/TestLink-install-and-deploy.html',
           },
           {
             title: 'SonarQube 安装部署',
@@ -138,7 +128,7 @@ export default {
           },
           {
             title: 'CentOS 安装部署 Jenkins',
-            link: '/zh-cn/docs/Jenkins-configure-and-deploy.md.html',
+            link: '/zh-cn/docs/Jenkins-configure-and-deploy.html',
           },
           {
             title: 'Jenkins 整合 LDAP 和 CAS 单点登录',
@@ -159,16 +149,6 @@ export default {
           {
             title: 'iTerm2 + ohmyzsh + powerlevel9k + tmux 打造专属个性化终端',
             link: '/zh-cn/docs/Custom-terminal-on-your-mac.html',
-          },
-          {
-            title: '目录',
-            opened: true,
-            children: [
-              {
-                title: '示例3',
-                link: '/zh-cn/docs/dir/demo3.html',
-              },
-            ],
           },
         ],
       },

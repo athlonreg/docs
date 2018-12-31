@@ -36,7 +36,7 @@ export default {
         author: 'Canvas',
         dateStr: 'April 22nd，2018',
         desc: 'TestLink 安装部署',
-        link: '/zh-cn/blog/TestLink-install-and-deploy.md.html.html',
+        link: '/zh-cn/blog/TestLink-install-and-deploy.html',
       },
       {
         title: 'TestLink 整合 LDAP 和 CAS 单点登录',
@@ -85,7 +85,7 @@ export default {
         author: 'Canvas',
         dateStr: 'April 22nd，2018',
         desc: 'CentOS 安装部署 Jenkins',
-        link: '/zh-cn/blog/Jenkins-configure-and-deploy.md.html',
+        link: '/zh-cn/blog/Jenkins-configure-and-deploy.html',
       },
       {
         title: 'Jenkins 整合 LDAP 和 CAS 单点登录',
@@ -161,7 +161,7 @@ export default {
         author: 'Canvas',
         dateStr: 'April 22nd，2018',
         desc: 'TestLink 安装部署',
-        link: '/zh-cn/blog/TestLink-install-and-deploy.md.html.html',
+        link: '/zh-cn/blog/TestLink-install-and-deploy.html',
       },
       {
         title: 'TestLink 整合 LDAP 和 CAS 单点登录',
@@ -210,7 +210,7 @@ export default {
         author: 'Canvas',
         dateStr: 'April 22nd，2018',
         desc: 'CentOS 安装部署 Jenkins',
-        link: '/zh-cn/blog/Jenkins-configure-and-deploy.md.html',
+        link: '/zh-cn/blog/Jenkins-configure-and-deploy.html',
       },
       {
         title: 'Jenkins 整合 LDAP 和 CAS 单点登录',
