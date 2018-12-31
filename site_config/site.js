@@ -45,7 +45,7 @@ export default {
         },
         {
           text: 'Developer guide',
-          link: '/en-us/docs/dir/CAS-5-3-4-install-and-deploy.html',
+          link: '/en-us/docs/CAS-5-3-4-install-and-deploy.html',
         },
       ],
     },
@@ -104,7 +104,7 @@ export default {
         },
         {
           text: '开发者指南',
-          link: '/zh-cn/docs/dir/CAS-5-3-4-install-and-deploy.html',
+          link: '/zh-cn/docs/CAS-5-3-4-install-and-deploy.html',
         },
       ],
     },
