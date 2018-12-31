@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="Gerrit-install-and-deploy" />
+	<meta name="description" content="CentOS安装部署代码审查工具--Gerrit" />
+	<!-- 网页标签标题 -->
+	<title>CentOS安装部署Gerrit</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/zh-cn/index.html" target="_self">首页</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">文档</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/blog/index.html" target="_self">博客</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/community/index.html" target="_self">社区</a></li></ul></div></div></header><div class="bar"><div class="bar-body"><img src="/img/system/docs.png" class="front-img"/><span>文档</span><img src="/img/system/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>文档</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/0-1-backpack.html" target="_self">01背包问题</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Allow-apps-downloaded-from-anywhere-in-macOS.html" target="_self">macOS开启任何来源</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">CAS 5.3.4 安装部署</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/CentOS-install-openLDAP.html" target="_self">CentOS 安装部署 openLDAP</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/TestLink-integrate-with-ldap-and-CAS.html" target="_self">TestLink 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/TestLink-install-and-deploy.md.html" target="_self">TestLink 安装部署</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/SonarQube-install-and-deploy.html" target="_self">SonarQube 安装部署</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/SonarQube-integrate-with-ldap-and-CAS.html" target="_self">SonarQube 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/shadowsocks-libev.html" target="_self">CentOS 搭建 ShadowSocks 访问墙外的世界</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/MantisBT-install-and-deploy.html" target="_self">CentOS 安装部署 MantisBT</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/MantisBT-integrate-with-ldap-and-CAS.html" target="_self">MantisBT 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Jenkins-configure-and-deploy.md.html" target="_self">CentOS 安装部署 Jenkins</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Jenkins-integrate-with-ldap-and-CAS.html" target="_self">Jenkins 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Install-macOS-on-laptop.html" target="_self">笔记本安装黑苹果教程</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Gerrit-install-and-deploy.html" target="_self">CentOS 安装部署 Gerrit</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Gerrit-integrate-with-ldap-and-CAS.html" target="_self">Gerrit 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Custom-terminal-on-your-mac.html" target="_self">iTerm2 + ohmyzsh + powerlevel9k + tmux 打造专属个性化终端</a></li><li style="height:72px;overflow:hidden" class="menu-item menu-item-level-2"><span>目录<img style="transform:rotate(0deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/dir/demo3.html" target="_self">示例3</a></li></ul></li></ul></li></ul></div><div class="doc-content markdown-body"><h2><cneter><code>Gerrit</code>安装配置过程</center></h2>
+<h1>安装过程如下</h1>
+<h2>步骤一：创建专用账户和工作目录</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># adduser gerrit  // 创建专用账户</span>
+<span class="hljs-comment"># passwd gerrit  //为专有账户设置密码</span>
+</code></pre>
+<h2>步骤二：配置<code>Java</code>环境</h2>
+<ul>
+<li>去官网下载<code>JDK</code>：<a href="http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html">http://www.oracle.com/technetwork/java/javase/downloads/java-archive-javase8-2177648.html</a></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/81/1b33b7e9dbe92a1515154d0193194f.jpg" alt=""></p>
+<ul>
+<li>安装<code>JDK</code>
+将下载得到的<code>jdk-8u161-linux-x64.rpm</code>包保存到<code>Linux</code>主机</li>
+</ul>
+<pre><code class="language-bash"><span class="hljs-comment"># rpm -ivh jdk-8u161-linux-x64.rpm</span>
+</code></pre>
+<ul>
+<li>设置环境变量，编辑<code>~/.bashrc</code>，</li>
+</ul>
+<pre><code class="language-bash"><span class="hljs-comment"># vim ~/.bashrc</span>
+</code></pre>
+<p>在文件的末尾添加以下行</p>
+<pre><code>export JAVA_HOME=/usr/java/jdk1.8.0_161
+export JRE_HOME=$JAVA_HOME/jre
+export CLASSPATH=$JAVA_HOME/lib
+export PATH=$PATH:$JAVA_HOME/bin:$JRE_HOME/bin:$CLASSPATH
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/49/6ac74e90a641e355b29b9c4d17deb9.jpg" alt=""></p>
+<p>使环境配置生效</p>
+<pre><code class="language-bash"><span class="hljs-comment"># source ~/.bashrc</span>
+</code></pre>
+<ul>
+<li>测试<code>Java</code>环境，在终端输入：<code>java -version</code>查看是否正常显示版本信息，若显示则安装成功</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/2f/49c7d622b298ae690db3c13754c1b1.jpg" alt=""></p>
+<h2>步骤三：安装MySQL</h2>
+<p>MySQL的Server在CentOS 7上从默认软件列表中被移除了，用MariaDB来代替，所以这导致我们必须要去官网上进行下载，找到链接，用wget打开，然后再安装：</p>
+<pre><code class="language-bash"><span class="hljs-comment"># wget http://dev.mysql.com/get/mysql57-community-release-el7-9.noarch.rpm</span>
+<span class="hljs-comment"># rpm -ivh mysql57-community-release-el7-9.noarch.rpm</span>
+<span class="hljs-comment"># yum -y install mysql mysql-server mysql-devel</span>
+</code></pre>
+<p>启动MySQL服务</p>
+<pre><code class="language-bash"><span class="hljs-comment"># systemctl start mysqld</span>
+</code></pre>
+<p>获取安装MySQL时的初始密码并登录MySQL</p>
+<pre><code class="language-bash"><span class="hljs-comment"># grep 'temporary password' /var/log/mysqld.log</span>
+<span class="hljs-comment"># mysql -u root -p</span>
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/4a/a001ae2bae5a494c7329cd78a477a3.jpg" alt=""></p>
+<p>登录成功后修改密码，首先修改安全策略为0，然后将密码长度限制修改为1，最后修改密码</p>
+<pre><code class="language-mysql">mysql&gt; set global validate_password_policy=0;
+mysql&gt; set global validate_password_length=1;
+mysql&gt; set password for root@localhost=password('root');
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/a2/0f74ed53f3a426d1fe005228478d8f.jpg" alt=""></p>
+<p>创建gerrit用户</p>
+<pre><code class="language-mysql">mysql&gt; CREATE USER 'gerrit'@'%' IDENTIFIED BY '123456';
+</code></pre>
+<p>创建gerrit要用的数据表</p>
+<pre><code class="language-mysql">mysql&gt; CREATE DATABASE ReviewDB; 
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/d2/49b9ee020b217374593ca9bf2333b3.jpg" alt=""></p>
+<p>把ReviewDB的所有权限赋给gerrit</p>
+<pre><code class="language-mysql">mysql&gt; GRANT ALL ON ReviewDB.* TO 'gerrit'@'%'; 
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/73/94a9f46a5dd2572e26ac02b13ec1d8.jpg" alt=""></p>
+<h2>步骤四：安装Git</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># yum -y install git</span>
+</code></pre>
+<h2>步骤五：下载安装<code>gerrit</code></h2>
+<ul>
+<li>从官网下载<code>gerrit</code>，存放于<code>/home/gerrit</code>目录：</li>
+</ul>
+<pre><code class="language-bash"><span class="hljs-comment"># wget https://gerrit-releases.storage.googleapis.com/gerrit-2.15.5.war</span>
+</code></pre>
+<ul>
+<li>安装<code>gerrit</code>：</li>
+</ul>
+<p>首先切换为gerrit用户，然后运行gerrit的war包</p>
+<pre><code class="language-bash"><span class="hljs-comment"># su gerrit</span>
+$ <span class="hljs-built_in">cd</span> 
+$ java -jar gerrit-2.15.war init -d review_site
+</code></pre>
+<p>一路回车默认安装(其中的认证方式处改为HTTP)</p>
+<pre><code class="language-bash">[root@centos-7 gerrit]<span class="hljs-comment"># su gerrit</span>
+[gerrit@centos-7 ~]$ ll
+总用量 83864
+-rwxr-xr-x. 1 root root 85872756 8月  21 12:49 gerrit-2.14.war
+[gerrit@centos-7 ~]$ java -jar gerrit-2.15.5.war init -d review_site
+Using secure store: com.google.gerrit.server.securestore.DefaultSecureStore
+[2018-08-21 12:51:37,463] [main] INFO  com.google.gerrit.server.config.GerritServerConfigProvider : No /home/gerrit/review_site/etc/gerrit.config; assuming defaults
+
+*** Gerrit Code Review 2.15.5
+***
+
+Create <span class="hljs-string">'/home/gerrit/review_site'</span> [Y/n]?
+
+*** Git Repositories
+***
+
+Location of Git repositories   [git]:
+
+*** SQL Database
+***
+
+Database server <span class="hljs-built_in">type</span>           [h2]:
+
+*** Index
+***
+
+Type                           [LUCENE/?]:
+
+*** User Authentication
+***
+
+Authentication method          [OPENID/?]: HTTP
+Get username from custom HTTP header [y/N]?
+SSO <span class="hljs-built_in">logout</span> URL                 :
+Enable signed push support     [y/N]?
+
+*** Review Labels
+***
+
+Install Verified label         [y/N]?
+
+*** Email Delivery
+***
+
+SMTP server hostname           [localhost]:
+SMTP server port               [(default)]:
+SMTP encryption                [NONE/?]:
+SMTP username                  :
+
+*** Container Process
+***
+
+Run as                         [gerrit]:
+Java runtime                   [/usr/java/jdk1.8.0_161/jre]:
+Copy gerrit-2.15.5.war to review_site/bin/gerrit.war [Y/n]?
+Copying gerrit-2.15.5.war to review_site/bin/gerrit.war
+
+*** SSH Daemon
+***
+
+Listen on address              [*]:
+Listen on port                 [29418]:
+Generating SSH host key ... rsa... dsa... <span class="hljs-keyword">done</span>
+
+*** HTTP Daemon
+***
+
+Behind reverse proxy           [y/N]?
+Use SSL (https://)             [y/N]?
+Listen on address              [*]:
+Listen on port                 [8080]:
+Canonical URL                  [http://centos-7.shared:8080/]:
+
+*** Cache
+***
+
+
+*** Plugins
+***
+
+Installing plugins.
+Install plugin commit-message-length-validator version v2.15.5 [y/N]?
+Install plugin download-commands version v2.15.5 [y/N]?
+Install plugin hooks version v2.15.5 [y/N]?
+Install plugin replication version v2.15.5 [y/N]?
+Install plugin reviewnotes version v2.15.5 [y/N]?
+Install plugin singleusergroup version v2.15.5 [y/N]?
+Initializing plugins.
+No plugins found with init steps.
+
+Initialized /home/gerrit/review_site
+Executing /home/gerrit/review_site/bin/gerrit.sh start
+Starting Gerrit Code Review: OK
+Waiting <span class="hljs-keyword">for</span> server on centos-7.shared:8080 ... OK
+Opening http://centos-7.shared:8080/<span class="hljs-comment">#/admin/projects/ ...FAILED</span>
+Open Gerrit with a JavaScript capable browser:
+  http://centos-7.shared:8080/<span class="hljs-comment">#/admin/projects/</span>
+[gerrit@centos-7 ~]$
+</code></pre>
+<p>授权文件夹权限给gerrit用户：</p>
+<pre><code class="language-bash"><span class="hljs-comment"># chown -R gerrit:gerrit review_site </span>
+</code></pre>
+<ul>
+<li>修改<code>gerrit</code>配置文件，说明如下</li>
+</ul>
+<pre><code class="language-bash">$ vim review_site/etc/gerrit.config
+</code></pre>
+<pre><code>[gerrit]
+        basePath = git                          //指定被gerrit管理的所有git库存放位置，即review_site_project/git/
+        canonicalWebUrl = http://10.211.55.19:8081/project   //指定web访问gerrit的网址//填自己的ip和端口号
+[database]
+        type = mysql                             //指定gerrit所默认数据库类型，可以选用mysql，安装并创建gerrit账户
+        database = /home/gerrit/review_site/db/ReviewDB
+[auth]
+        type = HTTP                           //指定浏览器登录gerrit时的认证方式
+[sendemail]
+        smtpServer = localhost                //局域网邮件服务器，可使用hMailSever搭建
+[container]
+        user = gerrit                             //指定gerrit所在机器的用户身份与上文创建的用户对应一致,可以是root
+        javaHome = /usr/java/jdk1.8.0_161/jre
+[sshd]
+        listenAddress = *:29418                   //指定sshd服务监听的端口号
+[httpd]
+        listenUrl = http://*:8081/                //指定http代理地址
+[cache]
+        directory = cache                        //缓存位置
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/31/8e586e93c265a2f6ff36d3db0454e7.jpg" alt=""></p>
+<p>重启gerrit服务</p>
+<pre><code class="language-bash">$ review_site/bin/gerrit.sh restart
+</code></pre>
+<p>设置gerrit服务开机启动</p>
+<pre><code class="language-bash"><span class="hljs-comment"># ln -snf /home/gerrit/review_site/bin/gerrit.sh /etc/init.d/gerrit.sh</span>
+</code></pre>
+<h2>步骤六：配置反向代理服务(nginx)</h2>
+<blockquote>
+<p>说明： 局域网本地安装，设置本地<code>repo</code>库</p>
+</blockquote>
+<h3>安装<code>nginx</code>反向代理服务器</h3>
+<ul>
+<li>安装<code>gcc-c++ pcre pcre-devel zlib zlib-devel openssl</code>：</li>
+</ul>
+<pre><code class="language-bash"><span class="hljs-comment"># yum -y install gcc-c++ pcre pcre-devel zlib zlib-devel openssl</span>
+</code></pre>
+<ul>
+<li>安装启动<code>nginx</code>并设置自启动</li>
+</ul>
+<pre><code class="language-bash"><span class="hljs-comment"># rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm</span>
+<span class="hljs-comment"># yum update &amp;&amp; yum -y install nginx </span>
+<span class="hljs-comment"># systemctl enable nginx</span>
+Created symlink from /etc/systemd/system/multi-user.target.wants/nginx.service to /usr/lib/systemd/system/nginx.service.
+<span class="hljs-comment"># systemctl start nginx</span>
+</code></pre>
+<h3>配置<code>nginx</code>：</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># vim /etc/nginx/conf.d/default.conf</span>
+</code></pre>
+<pre><code>server {
+    listen       82;
+    server_name  localhost;
+
+    auth_basic &quot;Welcome to Gerrit Code Review !&quot;;
+    auth_basic_user_file /home/gerrit/review_site/etc/passwd;
+
+    #charset koi8-r;
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        #root   /usr/share/nginx/html;
+        #index  index.html index.htm index.php index.jsp;
+        proxy_pass http://127.0.0.1:8081;
+        #proxy_set_header X-Forwarded-For $remote_addr;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+
+    #error_page  404              /404.html;
+
+    # redirect server error pages to the static page /50x.html
+    #
+    error_page   500 502 503 504  /50x.html;
+    location = /50x.html {
+        root   /usr/share/nginx/html;
+    }
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/a1/7b9e070ca210075f5fec8631a40d8b.jpg" alt=""></p>
+<p>启动<code>nginx</code>服务：</p>
+<pre><code class="language-bash"><span class="hljs-comment"># setenforce 0                 //关闭selinux以避免造成权限问题</span>
+<span class="hljs-comment"># systemctl disable firewalld  //禁用防火墙</span>
+<span class="hljs-comment"># systemctl stop firewalld     //关闭防火墙</span>
+<span class="hljs-comment"># systemctl start nginx</span>
+</code></pre>
+<h3>设置第一个<code>gerrit</code>用户的账号和密码</h3>
+<p>要用到htpasswd命令需要首先安装有httpd</p>
+<pre><code class="language-bash"><span class="hljs-comment"># yum -y install httpd</span>
+$ touch ./review_site/etc/passwd
+$ htpasswd -b ./review_site/etc/passwd gerrit 123456
+</code></pre>
+<h2>步骤七：安装配置<code>gitweb</code></h2>
+<h3>安装<code>gitweb</code>,最好在联网环境下安装，或者在离线环境下下载对应的依赖包</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># yum -y install gitweb</span>
+</code></pre>
+<h3>配置<code>gitweb</code>,与<code>gerrit</code>集成</h3>
+<p>修改<code>gitweb</code>的配置文件（/etc/gitweb.conf），将配置项 &quot;$projectroot&quot;修改为<code>gerrit</code>的<code>git</code>仓库目录。</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/35/3723767206d90e1f1fbf859d5df6ba.jpg" alt=""></p>
+<p>修改/home/gerrit/review_site/etc/gerrit.config,添加：</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/26/432e046271c2658c8a203b86c19d5f.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/9d/b0b9039fc3682a7cdfae62ce5387d9.jpg" alt=""></p>
+<h3>配置gerrit权限</h3>
+<p>使用管理员账号登录<code>gerrit</code>,修改<code>All-Projects</code>的权限，为<code>refs/*</code>和<code>refs/meta/config</code>的<code>Read</code>配置项配置合适的权限。</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/bc/d4431e93f304e1a913b244cadfd492.jpg" alt=""></p>
+<p><strong>注意：如果你是在root用户下输入上面的命令 创建了password文件到/home/gerrit/review_site/etc目录中,你会发现在登录的时候永远登录不成功,永远会得到服务器500的错误页面。原因是password文件的权限问题。我们知道,/home/gerrit/是我们之前新建的gerrit用户的,那么这个文件夹的权限是700,也就是只允许gerrit用户访问,其他组的用户是访问不了的,虽然这个文件的权限拥有root用户的所有权限,但是因为它放在700权限的文件夹下面,所以同样其他用户是访问不到的。解决方法如下</strong></p>
+<pre><code class="language-bash"><span class="hljs-comment"># chown -R gerrit:gerrit /home/gerrit</span>
+</code></pre>
+<h3>重启gerrit服务和Nginx服务</h3>
+<p>重启<code>gerrit</code>和<code>nginx</code>服务</p>
+<pre><code class="language-bash">$ /home/gerrit/review_site/bin/gerrit.sh restart
+<span class="hljs-comment"># systemctl restart nginx</span>
+</code></pre>
+<h2>步骤八：测试</h2>
+<p>访问http://localhost，用gerrit用户登录，登录界面如下</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/74/51196a5c04235cfbd07cf5a09e1b95.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/79/114d466e1f80823db828265ede65ee.jpg" alt=""></p>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/dubbo_gray.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>文档所有内容遵循开源协议</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/dir/CAS-5-3-4-install-and-deploy.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2018 https://blog.iamzhl.top/</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/documentation.js"></script>
+</body>
+</html>

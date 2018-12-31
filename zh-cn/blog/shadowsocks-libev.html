@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="shadowsocks" />
+	<meta name="description" content="shadowsocks-libev" />
+	<!-- 网页标签标题 -->
+	<title>shadowsocks-libev</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/blogDetail.css" />
+</head>
+<body>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/zh-cn/index.html" target="_self">首页</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">文档</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/zh-cn/blog/index.html" target="_self">博客</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/community/index.html" target="_self">社区</a></li></ul></div></div></header><section class="blog-content markdown-body"><h2>环境准备</h2>
+<ul>
+<li>国外服务器一台</li>
+<li>CentOS 操作系统</li>
+</ul>
+<h2>安装</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># yum -y install pcre pcre-devel git wget gcc gcc-c++</span>
+<span class="hljs-comment"># cd ~ &amp;&amp; git clone https://github.com/shadowsocks/shadowsocks-libev.git</span>
+<span class="hljs-comment"># cd shadowsocks-libev &amp;&amp; git submodule update --init --recursive</span>
+<span class="hljs-comment"># yum install gettext gcc autoconf libtool automake make asciidoc xmlto c-ares-devel libev-devel</span>
+<span class="hljs-comment"># echo "LIBSODIUM_VER=1.0.13" &gt;&gt; /etc/profile</span>
+<span class="hljs-comment"># source /etc/profile</span>
+<span class="hljs-comment"># cd ~</span>
+<span class="hljs-comment"># wget https://download.libsodium.org/libsodium/releases/LATEST.tar.gz</span>
+<span class="hljs-comment"># tar zxvf LATEST.tar.gz</span>
+<span class="hljs-comment"># pushd libsodium-stable</span>
+<span class="hljs-comment"># ./configure --prefix=/usr &amp;&amp; make</span>
+<span class="hljs-comment"># make install</span>
+<span class="hljs-comment"># popd</span>
+<span class="hljs-comment"># ldconfig</span>
+<span class="hljs-comment"># echo "export MBEDTLS_VER=2.6.0" &gt;&gt; /etc/profile</span>
+<span class="hljs-comment"># source /etc/profile</span>
+<span class="hljs-comment"># cd ~ &amp;&amp; wget wget https://tls.mbed.org/download/mbedtls-2.14.0-apache.tgz</span>
+<span class="hljs-comment"># tar xvf mbedtls-2.14.0-apache.tgz</span>
+<span class="hljs-comment"># pushd mbedtls-2.14.0</span>
+<span class="hljs-comment"># make SHARED=1 CFLAGS=-fPIC</span>
+<span class="hljs-comment"># make DESTDIR=/usr install</span>
+<span class="hljs-comment"># popd</span>
+<span class="hljs-comment"># ldconfig</span>
+<span class="hljs-comment"># cd shadowsocks-libev &amp;&amp; ./autogen.sh &amp;&amp; ./configure &amp;&amp; make</span>
+<span class="hljs-comment"># make install</span>
+<span class="hljs-comment"># cd /usr/local &amp;&amp;  wget  https://nchc.dl.sourceforge.net/project/pcre/pcre/8.41/pcre-8.41.tar.gz</span>
+<span class="hljs-comment"># tar -zxvf  pcre-8.41.tar.gz</span>
+<span class="hljs-comment"># cd pcre-8.41 &amp;&amp; ./configure &amp;&amp; make</span>
+<span class="hljs-comment"># make install</span>
+<span class="hljs-comment"># cd /usr/local &amp;&amp; mkdir ssr &amp;&amp; cd ssr</span>
+<span class="hljs-comment"># vi conf.conf</span>
+</code></pre>
+<pre><code class="language-json">{
+        <span class="hljs-attr">"server"</span>:<span class="hljs-string">"your server ip"</span>,
+        <span class="hljs-attr">"server_port"</span>:<span class="hljs-number">7788</span>,
+        <span class="hljs-attr">"local_port"</span>:<span class="hljs-number">1080</span>,
+        <span class="hljs-attr">"password"</span>:<span class="hljs-string">"your password for ssr"</span>,
+        <span class="hljs-attr">"timeout"</span>:<span class="hljs-number">60</span>,
+        <span class="hljs-attr">"method"</span>:<span class="hljs-string">"aes-256-cfb"</span>
+}
+</code></pre>
+<pre><code class="language-bash"><span class="hljs-comment"># ss-server -c /usr/local/ssr/conf.conf //运行</span>
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/d4/6463c41c237e134ade8219c099db8e.jpg" alt=""></p>
+<pre><code class="language-bash"><span class="hljs-comment"># cd /usr/local/bin &amp;&amp; vi ssr //利用脚本后台运行</span>
+</code></pre>
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash">!/bin/bash</span>
+nohup ss-server -c /usr/local/ssr/conf.conf &gt; /dev/null 2&gt;&amp;1 &amp;
+</code></pre>
+<pre><code class="language-bash"><span class="hljs-comment"># chmod +x /usr/local/bin/ssr</span>
+<span class="hljs-comment"># ssr</span>
+<span class="hljs-comment"># ps ax | grep ssr</span>
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/a4/ef69a4b5a7ca6de17e5744064ba11d.jpg" alt=""></p>
+</section><footer class="footer-container"><div class="footer-body"><img src="/img/dubbo_gray.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>文档所有内容遵循开源协议</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/dir/CAS-5-3-4-install-and-deploy.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2018 https://blog.iamzhl.top/</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/blogDetail.js"></script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="Jenkins-integrate-with-ldap-and-CAS" />
+	<meta name="description" content="Jenkins 整合 LDAP 以及 CAS 单点登录" />
+	<!-- 网页标签标题 -->
+	<title>Jenkins 整合 LDAP 以及 CAS 单点登录</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/blogDetail.css" />
+</head>
+<body>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/en-us/index.html"><img class="logo" src="/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">中</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/en-us/index.html" target="_self">HOME</a></li><li class="menu-item menu-item-normal"><a href="/en-us/docs/CAS-5-3-4-install-and-deploy" target="_self">DOCS</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/en-us/blog/index.html" target="_self">BLOG</a></li><li class="menu-item menu-item-normal"><a href="/en-us/community/index.html" target="_self">COMMUNITY</a></li></ul></div></div></header><section class="blog-content markdown-body"><h2>背景介绍</h2>
+<ul>
+<li>Jenkins 版本：2.138.3</li>
+<li>Jenkins 安装方式： Tomcat 容器部署 war 包</li>
+<li>Jenkins 地址：<a href="http://devops.iamzhl.top:8080/jenkins">http://devops.iamzhl.top:8080/jenkins</a></li>
+<li>openLDAP 服务：ldap://devops.iamzhl.top:389</li>
+<li>CAS 服务：<a href="http://devops.iamzhl.top:8080/cas">http://devops.iamzhl.top:8080/cas</a></li>
+</ul>
+<h2>整合 openLDAP</h2>
+<p>首先去 Jenkins 插件官网下载 LDAP 和 CAS 插件</p>
+<ul>
+<li>LDAP：<a href="https://updates.jenkins.io/download/plugins/ldap/">https://updates.jenkins.io/download/plugins/ldap/</a></li>
+<li>CAS：<a href="https://updates.jenkins.io/download/plugins/cas-plugin/">https://updates.jenkins.io/download/plugins/cas-plugin/</a></li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/46/53fb1f3e3cfa00c055965bc99c7fbd.jpg" alt=""></p>
+<p>如图，点击<code>系统管理</code></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/86/4f0c2ebaef58a3c719397b0adfbc5b.jpg" alt=""></p>
+<p>点击插件管理 -&gt; 高级 -&gt; 上传插件(选择文件)</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/65/bfd2b91d856ca8132434b2da51de6e.jpg" alt=""></p>
+<p>弹出选择文件的对话框后，首先选择我们下载好的 LDAP 插件，然后点击上传，然后就会跳转到安装界面，我们勾选<code>安装完成后重启Jenkins(空闲时)</code>，等待一会Jenkins安装插件完成后就会重启</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/c5/7cf7ef11ecd49b19b07ea7333cc26a.jpg" alt=""></p>
+<p>输入用户名密码登录后，依次打开<code>系统管理</code> -&gt; <code>全局安全配置</code>，在安全域勾选 LDAP，点击<code>Advanced Server Configuration</code>,开始配置 LDAP 服务器的绑定信息</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/12/adf30303385802ce2fc45d175a7d16.jpg" alt=""></p>
+<p>点击<code>Test LDAP settings</code>，测试<code>LDAP</code>配置是否可用，如下图，输入一个<code>LDAP</code>服务器中存在的用户账号和密码，点击<code>Test</code></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/93/bca0bd8c0ac21d1b2c4cffd7cea3bc.jpg" alt=""></p>
+<p>如果测试成功，会打印出类似如下的信息</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/f5/7453c8051a55d9622dbe1e461d1b25.jpg" alt=""></p>
+<p>点击<code>应用</code>，然后点击<code>保存</code>。</p>
+<p>测试一下，用<code>LDAP</code>中的用户进行登录</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/1e/46a5ac15c7611eff4ade4830966565.jpg" alt=""></p>
+<p>登陆成功，配置完成，到这里，<code>Jenkins</code>整合<code>LDAP</code>认证就完成了。</p>
+<h2>整合 CAS 单点登录</h2>
+<p>首先安装<code>CAS</code>插件，和上面安装<code>LDAP</code>插件步骤一样，安装完<code>CAS</code>打开<code>系统管理</code> -&gt; <code>全局安全配置</code>，在安全域勾选<code>CAS (Central Authentication Service)</code>，如图所示，配置好<code>CAS</code>的<code>URL</code>和<code>CAS 协议</code></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/b7/99ca653df5281634fed8a6dcc4f3c2.jpg" alt=""></p>
+<p>然后点击<code>应用</code>-&gt;<code>保存</code>，注销，然后重新登录</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/ce/bf7939fceebf45806037fd759179f4.jpg" alt=""></p>
+<p>这时就可以跳转到<code>CAS</code>的登录界面了，输入用户名密码点击登录，就可以正常的登录进入<code>Jenkins</code>系统了。</p>
+<p>至此，<code>Jenkins</code>整合<code>CAS</code>完成。</p>
+</section><footer class="footer-container"><div class="footer-body"><img src="/img/dubbo_gray.png"/><div class="cols-container"><div class="col col-12"><h3>Disclaimer</h3><p>the disclaimer content</p></div><div class="col col-6"><dl><dt>Documentation</dt><dd><a href="/en-us/docs/CAS-5-3-4-install-and-deploy.html" target="_self">Overview</a></dd><dd><a href="/en-us/docs/CAS-5-3-4-install-and-deploy.html" target="_self">Quick start</a></dd><dd><a href="/en-us/docs/dir/CAS-5-3-4-install-and-deploy.html" target="_self">Developer guide</a></dd></dl></div><div class="col col-6"><dl><dt>Resources</dt><dd><a href="/en-us/blog/index.html" target="_self">Blog</a></dd><dd><a href="/en-us/community/index.html" target="_self">Community</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2018 https://blog.iamzhl.top/</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/blogDetail.js"></script>
+</body>
+</html>

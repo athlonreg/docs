@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="SonarQube-integrate-with-ldap-and-CAS" />
+	<meta name="description" content="SonarQube 整合 LDAP 和 CAS 单点登录" />
+	<!-- 网页标签标题 -->
+	<title>SonarQube 整合 LDAP 和 CAS 单点登录</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/blogDetail.css" />
+</head>
+<body>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/zh-cn/index.html" target="_self">首页</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">文档</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/zh-cn/blog/index.html" target="_self">博客</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/community/index.html" target="_self">社区</a></li></ul></div></div></header><section class="blog-content markdown-body"><h2>背景介绍</h2>
+<ul>
+<li><code>SonarQube</code>版本：7.4</li>
+<li><code>SonarQube</code> URL: <a href="http://devops.iamzhl.top:9000">http://devops.iamzhl.top:9000</a></li>
+<li>openLDAP 服务：ldap://devops.iamzhl.top:389</li>
+<li>CAS 服务：<a href="http://devops.iamzhl.top:8080/cas">http://devops.iamzhl.top:8080/cas</a></li>
+</ul>
+<h2>整合<code>LDAP</code></h2>
+<p>修改<code>sonar</code>配置文件<code>sonar.properties</code></p>
+<pre><code class="language-bash">$ vi /usr/<span class="hljs-built_in">local</span>/sonarqube-7.4/conf/sonar.properties
+</code></pre>
+<p>找到下面的部分修改<code>LDAP</code>配置</p>
+<pre><code class="language-properties"><span class="hljs-comment">#--------------------------------------------------------------------------------------------------</span>
+<span class="hljs-comment"># LDAP CONFIGURATION</span>
+<span class="hljs-comment">
+# Enable the LDAP feature</span>
+<span class="hljs-comment"># sonar.security.realm=LDAP</span>
+<span class="hljs-comment">
+# Set to true when connecting to a LDAP server using a case-insensitive setup.</span>
+<span class="hljs-comment"># sonar.authenticator.downcase=true</span>
+<span class="hljs-comment">
+# URL of the LDAP server. Note that if you are using ldaps, then you should install the server certificate into the Java truststore.</span>
+<span class="hljs-comment"># ldap.url=ldap://localhost:10389</span>
+<span class="hljs-comment">
+# Bind DN is the username of an LDAP user to connect (or bind) with. Leave this blank for anonymous access to the LDAP directory (optional)</span>
+<span class="hljs-comment"># ldap.bindDn=cn=sonar,ou=users,o=mycompany</span>
+<span class="hljs-comment">
+# Bind Password is the password of the user to connect with. Leave this blank for anonymous access to the LDAP directory (optional)</span>
+<span class="hljs-comment"># ldap.bindPassword=secret</span>
+<span class="hljs-comment">
+# Possible values: simple | CRAM-MD5 | DIGEST-MD5 | GSSAPI See http://java.sun.com/products/jndi/tutorial/ldap/security/auth.html (default: simple)</span>
+<span class="hljs-comment"># ldap.authentication=simple</span>
+</code></pre>
+<p>修改如下(请将具体信息按照自己的<code>LDAP</code>服务器信息进行修改):</p>
+<pre><code class="language-properties"><span class="hljs-comment">#--------------------------------------------------------------------------------------------------</span>
+<span class="hljs-comment"># LDAP CONFIGURATION</span>
+<span class="hljs-comment">
+# Enable the LDAP feature</span>
+<span class="hljs-meta">sonar.security.realm</span>=<span class="hljs-string">LDAP</span>
+<span class="hljs-comment">
+# Set to true when connecting to a LDAP server using a case-insensitive setup.</span>
+<span class="hljs-comment"># sonar.authenticator.downcase=true</span>
+<span class="hljs-comment">
+# URL of the LDAP server. Note that if you are using ldaps, then you should install the server certificate into the Java truststore.</span>
+<span class="hljs-meta">ldap.url</span>=<span class="hljs-string">ldap://devops.iamzhl.top:389</span>
+<span class="hljs-comment">
+# Bind DN is the username of an LDAP user to connect (or bind) with. Leave this blank for anonymous access to the LDAP directory (optional)</span>
+<span class="hljs-meta">ldap.bindDn</span>=<span class="hljs-string">cn=Manager,dc=iamzhl,dc=top</span>
+<span class="hljs-comment">
+# Bind Password is the password of the user to connect with. Leave this blank for anonymous access to the LDAP directory (optional)</span>
+<span class="hljs-meta">ldap.bindPassword</span>=<span class="hljs-string">passwd</span>
+<span class="hljs-comment">
+# Possible values: simple | CRAM-MD5 | DIGEST-MD5 | GSSAPI See http://java.sun.com/products/jndi/tutorial/ldap/security/auth.html (default: simple)</span>
+<span class="hljs-meta">ldap.authentication</span>=<span class="hljs-string">simple</span>
+<span class="hljs-comment">
+# See :</span>
+<span class="hljs-comment">#   * http://java.sun.com/products/jndi/tutorial/ldap/security/digest.html</span>
+<span class="hljs-comment">#   * http://java.sun.com/products/jndi/tutorial/ldap/security/crammd5.html</span>
+<span class="hljs-comment"># (optional)</span>
+<span class="hljs-comment"># ldap.realm=example.org</span>
+<span class="hljs-comment">
+# Context factory class (optional)</span>
+<span class="hljs-comment"># ldap.contextFactoryClass=com.sun.jndi.ldap.LdapCtxFactory</span>
+<span class="hljs-comment">
+# Enable usage of StartTLS (default : false)</span>
+<span class="hljs-comment"># ldap.StartTLS=true</span>
+<span class="hljs-comment">
+# Follow or not referrals. See http://docs.oracle.com/javase/jndi/tutorial/ldap/referral/jndi.html (default: true)</span>
+<span class="hljs-comment"># ldap.followReferrals=false</span>
+<span class="hljs-comment">
+# USER MAPPING</span>
+<span class="hljs-comment">
+# Distinguished Name (DN) of the root node in LDAP from which to search for users (mandatory)</span>
+<span class="hljs-meta">ldap.user.baseDn</span>=<span class="hljs-string">ou=People,dc=iamzhl,dc=top</span>
+<span class="hljs-comment">
+# LDAP user request. (default: (&amp;(objectClass=inetOrgPerson)(uid={login})) )</span>
+<span class="hljs-comment"># ldap.user.request=(&amp;(objectClass=user)(sAMAccountName={login}))</span>
+<span class="hljs-meta">ldap.user.request</span>=<span class="hljs-string">(&amp;(objectClass=inetOrgPerson)(uid={login}))</span>
+<span class="hljs-comment">
+# Attribute in LDAP defining the user’s real name. (default: cn)</span>
+<span class="hljs-comment"># ldap.user.realNameAttribute=name</span>
+<span class="hljs-meta">ldap.user.realNameAttribute</span>=<span class="hljs-string">cn</span>
+<span class="hljs-comment">
+# Attribute in LDAP defining the user’s email. (default: mail)</span>
+<span class="hljs-comment"># ldap.user.emailAttribute=email</span>
+<span class="hljs-meta">ldap.user.emailAttribute</span>=<span class="hljs-string">mail</span>
+<span class="hljs-comment">
+# GROUP MAPPING</span>
+<span class="hljs-comment">
+# Distinguished Name (DN) of the root node in LDAP from which to search for groups. (optional, default: empty)</span>
+<span class="hljs-comment"># ldap.group.baseDn=cn=groups,dc=example,dc=org</span>
+<span class="hljs-meta">ldap.group.baseDn</span>=<span class="hljs-string">ou=People,dc=iamzhl,dc=top</span>
+<span class="hljs-comment">
+# LDAP group request (default: (&amp;(objectClass=groupOfUniqueNames)(uniqueMember={dn})) )</span>
+<span class="hljs-comment"># ldap.group.request=(&amp;(objectClass=group)(member={dn}))</span>
+<span class="hljs-meta">ldap.group.request</span>=<span class="hljs-string">(&amp;(objectClass=posixGroup)(memberUid={uid}))</span>
+<span class="hljs-comment">
+# Property used to specifiy the attribute to be used for returning the list of user groups in the compatibility mode. (default: cn)</span>
+<span class="hljs-comment"># ldap.group.idAttribute=sAMAccountName</span>
+</code></pre>
+<p>修改完成后，重启<code>sonar</code></p>
+<pre><code class="language-bash">$ sonar restart
+</code></pre>
+<p>打开<code>sonar</code>网址，输入<code>LDAP</code>中的用户名和密码后点击登录</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/89/7728c5a52a96a6841a426155062a56.jpg" alt=""></p>
+<p>登陆成功后，正常获取用户名</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/dd/53d39dc0858679e2a4949419417678.jpg" alt=""></p>
+<p>至此，<code>SonarQube</code>整合<code>LDAP</code>完成</p>
+<h2>整合<code>CAS</code>单点登录</h2>
+<h3>介绍</h3>
+<p><code>SonarQube</code>提供了一种<code>SSO</code>机制，可以用来作为单点登录的实现方式，就是使用<code>HTTP header</code>的方式，而<code>CAS</code>也提供了一种用于<code>apache</code>服务的认证方式，这就是<code>mod_auth_cas</code>，思路很简单，我们利用<code>apache</code>反向代理，做一个端口用于虚拟主机来转发<code>SonarQube</code>服务，然后在这个虚拟主机内部加入<code>mod_auth_cas</code>提供的认证拦截，同时在里面指定一个<code>HTTP header</code>用于发送认证后的请求到<code>SonarQube</code>，然后，<code>SonarQube</code>接收到这个请求后，发现正是自己设定的<code>HTTP header</code>，于是予以通过认证。这就是整个认证流程，下面开始介绍整合方法。</p>
+<h3><code>SonarQube</code>修改</h3>
+<pre><code class="language-bash">$ vi /usr/<span class="hljs-built_in">local</span>/sonarqube-7.4/conf/sonar.properties
+</code></pre>
+<p>修改如下部分(就是将<code>SSO AUTHENTICATION</code>部分的参数取消注释，令其生效)</p>
+<pre><code class="language-properties"><span class="hljs-comment">#--------------------------------------------------------------------------------------------------</span>
+<span class="hljs-comment"># SSO AUTHENTICATION</span>
+<span class="hljs-comment">
+# Enable authentication using HTTP headers</span>
+<span class="hljs-meta">sonar.web.sso.enable</span>=<span class="hljs-string">true</span>
+<span class="hljs-comment">
+# Name of the header to get the user login.</span>
+<span class="hljs-comment"># Only alphanumeric, '.' and '@' characters are allowed</span>
+<span class="hljs-meta">sonar.web.sso.loginHeader</span>=<span class="hljs-string">X-Forwarded-Login</span>
+<span class="hljs-comment">
+# Name of the header to get the user name</span>
+<span class="hljs-meta">sonar.web.sso.nameHeader</span>=<span class="hljs-string">X-Forwarded-Name</span>
+<span class="hljs-comment">
+# Name of the header to get the user email (optional)</span>
+<span class="hljs-meta">sonar.web.sso.emailHeader</span>=<span class="hljs-string">X-Forwarded-Email</span>
+<span class="hljs-comment">
+# Name of the header to get the list of user groups, separated by comma (optional).</span>
+<span class="hljs-comment"># If the sonar.sso.groupsHeader is set, the user will belong to those groups if groups exist in SonarQube.</span>
+<span class="hljs-comment"># If none of the provided groups exists in SonarQube, the user will only belong to the default group.</span>
+<span class="hljs-comment"># Note that the default group will always be set.</span>
+<span class="hljs-meta">sonar.web.sso.groupsHeader</span>=<span class="hljs-string">X-Forwarded-Groups</span>
+<span class="hljs-comment">
+# Interval used to know when to refresh name, email and groups.</span>
+<span class="hljs-comment"># During this interval, if for instance the name of the user is changed in the header, it will only be updated after X minutes.</span>
+<span class="hljs-meta">sonar.web.sso.refreshIntervalInMinutes</span>=<span class="hljs-string">5</span>
+</code></pre>
+<p>修改<code>app.d5dba530.chunk.js</code>，解决登出问题，不同的版本不同，<code>7.2.1</code>的在<code>main</code>开头的一个<code>js</code>文件中。</p>
+<pre><code class="language-bash"><span class="hljs-comment"># vi /usr/local/sonarqube-7.4/web/js/app.d5dba530.chunk.js</span>
+</code></pre>
+<p>修改如下</p>
+<pre><code class="language-js">t.handleLogout = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">e</span>) </span>{
+	<span class="hljs-comment">// e.preventDefault(), t.context.router.push("/sessions/logout") </span>
+	t.context.router.push(<span class="hljs-string">"/sessions/logout"</span>)  <span class="hljs-comment">//去掉e.preventDefault()方法</span>
+}
+</code></pre>
+<pre><code class="language-js">r.createElement(<span class="hljs-string">"li"</span>, <span class="hljs-literal">null</span>, r.createElement(<span class="hljs-string">"a"</span>, {
+	<span class="hljs-comment">//href: "#",</span>
+	href: <span class="hljs-string">"http://192.168.6.99:8080/cas/logout"</span>,  <span class="hljs-comment">//将此注销按钮的href改为CAS服务器的登出页面</span>
+	onClick: <span class="hljs-keyword">this</span>.handleLogout
+}
+</code></pre>
+<h3><code>mod_auth_cas</code>修改</h3>
+<p>然后安装<code>mod_auth_cas</code></p>
+<pre><code class="language-bash"><span class="hljs-comment"># yum -y install mod_auth_cas</span>
+</code></pre>
+<p>配置<code>mod_auth_cas</code></p>
+<pre><code class="language-bash"><span class="hljs-comment"># vi /etc/httpd/conf.d/auth_cas.conf</span>
+</code></pre>
+<p>修改<code>CAS</code>的<code>Cookie</code>存储位置以及登录地址和验证地址等参数如下</p>
+<pre><code class="language-properties"><span class="hljs-attr">LogLevel</span> <span class="hljs-string">Debug</span>
+<span class="hljs-attr">CASDebug</span> <span class="hljs-string">On</span>
+<span class="hljs-attr">CASVersion</span> <span class="hljs-string">2</span>
+<span class="hljs-attr">CASTimeout</span> <span class="hljs-string">1740</span>
+<span class="hljs-attr">CASIdleTimeout</span> <span class="hljs-string">1740</span>
+<span class="hljs-attr">CASSSOEnabled</span> <span class="hljs-string">On</span>
+<span class="hljs-attr">CASCookiePath</span> <span class="hljs-string">/var/cache/httpd/mod_auth_cas/</span>
+<span class="hljs-attr">CASLoginURL</span> <span class="hljs-string">http://devops.iamzhl.top:8080/cas/login</span>
+<span class="hljs-attr">CASValidateURL</span> <span class="hljs-string">http://devops.iamzhl.top:8080/cas/serviceValidate</span>
+</code></pre>
+<h3><code>apache</code>修改</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># vi /etc/httpd/conf/httpd.conf</span>
+</code></pre>
+<p>添加虚拟主机</p>
+<pre><code class="language-properties"><span class="hljs-comment"># 添加一个监听端口 83 用作 SonarQube 的代理主机</span>
+<span class="hljs-attr">Listen</span> <span class="hljs-string">83</span>
+<span class="hljs-comment">
+# 加载 mod_auth_cas 模块，如果已经加载请忽略</span>
+<span class="hljs-attr">LoadModule</span> <span class="hljs-string">auth_cas_module modules/mod_auth_cas.so</span>
+<span class="hljs-comment">
+# 设置 SonarQube 的虚拟主机</span>
+<span class="hljs-meta">&lt;VirtualHost</span> <span class="hljs-string">*:83&gt;</span>
+        <span class="hljs-attr">ServerName</span> <span class="hljs-string">devops.iamzhl.top</span>
+        <span class="hljs-attr">ServerAdmin</span> <span class="hljs-string">15563836030@163.com</span>
+
+        <span class="hljs-attr">CASRootProxiedAs</span> <span class="hljs-string">http://devops.iamzhl.top:83</span>
+
+        <span class="hljs-attr">ProxyPreserveHost</span> <span class="hljs-string">On</span>
+
+        <span class="hljs-attr">ProxyPass</span> <span class="hljs-string">/ http://devops.iamzhl.top:9000/</span>
+        <span class="hljs-attr">ProxyPassReverse</span> <span class="hljs-string">/ http://devops.iamzhl.top:9000/</span>
+        <span class="hljs-attr">ProxyPass</span> <span class="hljs-string">/sessions/logout http://devops.iamzhl.top:8080/cas/logout</span>
+        <span class="hljs-attr">ProxyPassReverse</span> <span class="hljs-string">/sessions/logout http://devops.iamzhl.top:8080/cas/logout</span>
+        <span class="hljs-attr">ProxyPass</span> <span class="hljs-string">/api/authentication/logout http://devops.iamzhl.top:8080/cas/logout</span>
+        <span class="hljs-attr">ProxyPassReverse</span> <span class="hljs-string">/api/authentication/logout http://devops.iamzhl.top:8080/cas/logout</span>
+
+        <span class="hljs-attr">ErrorLog</span> <span class="hljs-string">/var/log/sonar/error.log</span>
+        <span class="hljs-attr">CustomLog</span> <span class="hljs-string">/var/log/sonar/access.log common</span>
+
+        <span class="hljs-meta">&lt;Location</span> <span class="hljs-string">/&gt;</span>
+                <span class="hljs-attr">AuthName</span> <span class="hljs-string">"Welcome to devops sonar"</span>
+                <span class="hljs-attr">CASAuthNHeader</span> <span class="hljs-string">X-Forwarded-Login</span>
+                <span class="hljs-attr">Authtype</span> <span class="hljs-string">CAS</span>
+                <span class="hljs-attr">require</span> <span class="hljs-string">valid-user</span>
+        <span class="hljs-attr">&lt;/Location&gt;</span>
+
+        <span class="hljs-meta">&lt;Proxy</span> <span class="hljs-string">*&gt;</span>
+                <span class="hljs-attr">Order</span> <span class="hljs-string">deny,allow</span>
+                <span class="hljs-attr">Allow</span> <span class="hljs-string">from all</span>
+        <span class="hljs-attr">&lt;/Proxy&gt;</span>
+<span class="hljs-attr">&lt;/VirtualHost&gt;</span>
+</code></pre>
+<h3>重启服务</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># mkdir /var/log/sonar</span>
+<span class="hljs-comment"># chown -R apache:apache /var/log/sonar</span>
+<span class="hljs-comment"># su sonar</span>
+$ sonar restart
+<span class="hljs-comment"># su </span>
+<span class="hljs-comment"># systemctl restart httpd</span>
+</code></pre>
+<h3>测试</h3>
+<p>打开网址<code>http://devops.iamzhl.top:83</code>，发现自动跳转到了<code>CAS</code>的登录界面，网址是<code>http://devops.iamzhl.top:8080/cas/login?service=http%3a%2f%2fdevops.iamzhl.top%3a83%2f</code></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/0b/b05aa63a31ffc624e42290d71c68e8.jpg" alt=""></p>
+<p>输入用户名密码后点击登录</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/6d/548f70b5aba6e4399e06ae288adfa9.jpg" alt=""></p>
+<p>如图所示，登陆成功，地址是<code>http://devops.iamzhl.top:83/projects</code></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/e1/463c767ddd0147ed54fba65d91a0f7.jpg" alt=""></p>
+<p>如上图所示，点击注销，就会登出并跳转至<code>CAS</code>的登出界面</p>
+<p><img src="https://gitee.com/athlonreg/picbed/raw/master/Images/e9/a067be6a85ec888bc9ab25bcf0d0e7.jpg" alt=""></p>
+<p>至此，<code>SonarQube</code>整合<code>CAS</code>单点登录完成。</p>
+</section><footer class="footer-container"><div class="footer-body"><img src="/img/dubbo_gray.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>文档所有内容遵循开源协议</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/dir/CAS-5-3-4-install-and-deploy.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2018 https://blog.iamzhl.top/</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/blogDetail.js"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="Custom-terminal-on-your-mac" />
+	<meta name="description" content="iTerm2 + ohmyzsh + powerlevel9k + tmux 打造专属个性化终端" />
+	<!-- 网页标签标题 -->
+	<title>iTerm2 + ohmyzsh + powerlevel9k + tmux 打造专属个性化终端</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/blogDetail.css" />
+</head>
+<body>
+	<div id="root"><div class="blog-detail-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/zh-cn/index.html" target="_self">首页</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">文档</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/zh-cn/blog/index.html" target="_self">博客</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/community/index.html" target="_self">社区</a></li></ul></div></div></header><section class="blog-content markdown-body"><h1>先来张图镇楼</h1>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/5c/d74f1affaf72faac5b2887dc78625d.jpg" alt=""></p>
+<h1>首先搭建好安装<code>homebrew</code>环境</h1>
+<blockquote>
+<p>在<code>mac</code>上拥有一个好的包管理器是非常重要的，<code>Debian</code>家族有<code>apt</code>，<code>mac</code>有<code>homebrew</code>，非常好用。</p>
+</blockquote>
+<pre><code class="language-bash">$ /usr/bin/ruby -e <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)</span>"</span>
+</code></pre>
+<h1>安装<code>oh-my-zsh</code></h1>
+<blockquote>
+<p><code>oh-my-zsh</code>是一款非常好用且美观的<code>shell</code>工具，其命令的补全等都是其他如<code>bash</code>、<code>csh</code>等所无法比拟的</p>
+</blockquote>
+<blockquote>
+<p>安装方式两种</p>
+</blockquote>
+<ul>
+<li>通过<code>curl</code></li>
+</ul>
+<pre><code class="language-bash">$ sh -c <span class="hljs-string">"<span class="hljs-variable">$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)</span>"</span>
+</code></pre>
+<ul>
+<li>通过<code>wget</code></li>
+</ul>
+<pre><code class="language-bash">$ sh -c <span class="hljs-string">"<span class="hljs-variable">$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)</span>"</span>
+</code></pre>
+<p>安装完成后设定<code>zsh</code>为默认<code>shell</code></p>
+<pre><code class="language-bash">$ chsh -s /bin/zsh
+</code></pre>
+<h1>设定<code>oh-my-zsh</code>的主题</h1>
+<blockquote>
+<p><code>oh-my-zsh</code>支持非常多的主题，这里我将我个人比较喜欢的主题<code>powerlevel9k</code>作为实例</p>
+</blockquote>
+<pre><code class="language-bash">$ git <span class="hljs-built_in">clone</span> https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+</code></pre>
+<p>然后修改<code>zsh</code>的配置文件</p>
+<pre><code class="language-bash">$ vim ~/.zshrc 
+</code></pre>
+<p>将<code>ZSH_THEME</code>设定为<code>powerlevel9k</code>，如图</p>
+<p><img src="https://ws1.sinaimg.cn/large/006dLY5Ily1fypw3om3nij31p817atmw.jpg" alt=""></p>
+<p>然后保存退出，使配置文件重新生效</p>
+<pre><code class="language-bash">$ <span class="hljs-built_in">source</span> ~/.zshrc
+</code></pre>
+<h1>安装<code>iTerm2</code></h1>
+<blockquote>
+<p><code>iTerm2</code>是一款替代系统内置终端的工具，其功能更强大，可定义扩展性也更强</p>
+</blockquote>
+<pre><code class="language-bash">$ brew cask install iterm2
+</code></pre>
+<h1>安装<code>archey</code>小工具</h1>
+<blockquote>
+<p><code>archey</code>是一个命令行美化工具，其可以在运行终端程序时为用户显示打印出一个七彩的苹果<code>logo</code></p>
+</blockquote>
+<blockquote>
+<p>这个工具的原作者是<a href="https://github.com/obihann"><code>obihann</code></a>，我将其按照自己的习惯进行了一些修改，并做了汉化，朋友们可以自行选择</p>
+</blockquote>
+<ul>
+<li>原作者的安装方式</li>
+</ul>
+<pre><code class="language-bash">brew install archey
+</code></pre>
+<p>我个人修改的和汉化的可以通过我<code>GitHub</code>仓库中<code>Pages</code>页面的<code>README</code>说明文档进行安装，按照要求安装并配置完成后，退出终端再重新打开就可以发现终端可以自动打印图中的七彩苹果了。</p>
+<p><a href="https://athlonreg.github.io/archey-osx/">https://athlonreg.github.io/archey-osx/</a></p>
+<h1>安装<code>tmux</code>小工具</h1>
+<blockquote>
+<p><code>Tmux</code>是一个优秀的终端复用软件，类似<code>GNU Screen</code>，但来自于<code>OpenBSD</code>，采用<code>BSD</code>授权。</p>
+</blockquote>
+<pre><code class="language-bash">$ brew install tmux
+</code></pre>
+<p>安装完成后输入命令<code>tmux</code>即可打开软件，界面十分简单，类似一个下方带有状态栏的终端控制台</p>
+<p>安装完成后，我们将其再美化一下</p>
+<pre><code class="language-bash">$ <span class="hljs-built_in">cd</span> ; rm -rf .tmux
+$ git <span class="hljs-built_in">clone</span> https://github.com/gpakosz/.tmux.git
+$ ln -s .tmux/.tmux.conf
+$ cp .tmux/.tmux.conf.local .
+</code></pre>
+<h1>美化结束</h1>
+<blockquote>
+<p>到这里，相信你应该和我开头的截图有一样的效果了，如果没有的话，可以在本文后面评论，我会尽快回复。</p>
+</blockquote>
+</section><footer class="footer-container"><div class="footer-body"><img src="/img/dubbo_gray.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>文档所有内容遵循开源协议</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/dir/CAS-5-3-4-install-and-deploy.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2018 https://blog.iamzhl.top/</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/blogDetail.js"></script>
+</body>
+</html>

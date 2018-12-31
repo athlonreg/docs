@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="openLDAP" />
+	<meta name="description" content="CentOS安装部署 openLDAP" />
+	<!-- 网页标签标题 -->
+	<title>CentOS安装部署 openLDAP</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/zh-cn/index.html" target="_self">首页</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">文档</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/blog/index.html" target="_self">博客</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/community/index.html" target="_self">社区</a></li></ul></div></div></header><div class="bar"><div class="bar-body"><img src="/img/system/docs.png" class="front-img"/><span>文档</span><img src="/img/system/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>文档</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/0-1-backpack.html" target="_self">01背包问题</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Allow-apps-downloaded-from-anywhere-in-macOS.html" target="_self">macOS开启任何来源</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">CAS 5.3.4 安装部署</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/CentOS-install-openLDAP.html" target="_self">CentOS 安装部署 openLDAP</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/TestLink-integrate-with-ldap-and-CAS.html" target="_self">TestLink 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/TestLink-install-and-deploy.md.html" target="_self">TestLink 安装部署</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/SonarQube-install-and-deploy.html" target="_self">SonarQube 安装部署</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/SonarQube-integrate-with-ldap-and-CAS.html" target="_self">SonarQube 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/shadowsocks-libev.html" target="_self">CentOS 搭建 ShadowSocks 访问墙外的世界</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/MantisBT-install-and-deploy.html" target="_self">CentOS 安装部署 MantisBT</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/MantisBT-integrate-with-ldap-and-CAS.html" target="_self">MantisBT 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Jenkins-configure-and-deploy.md.html" target="_self">CentOS 安装部署 Jenkins</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Jenkins-integrate-with-ldap-and-CAS.html" target="_self">Jenkins 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Install-macOS-on-laptop.html" target="_self">笔记本安装黑苹果教程</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Gerrit-install-and-deploy.html" target="_self">CentOS 安装部署 Gerrit</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Gerrit-integrate-with-ldap-and-CAS.html" target="_self">Gerrit 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Custom-terminal-on-your-mac.html" target="_self">iTerm2 + ohmyzsh + powerlevel9k + tmux 打造专属个性化终端</a></li><li style="height:72px;overflow:hidden" class="menu-item menu-item-level-2"><span>目录<img style="transform:rotate(0deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/dir/demo3.html" target="_self">示例3</a></li></ul></li></ul></li></ul></div><div class="doc-content markdown-body"><h2>简介</h2>
+<p>OpenLDAP 是轻型目录访问协议<code>Lightweight Directory Access Protocol</code> - <code>LDAP</code>的自由和开源的实现，在其<code>OpenLDAP</code>许可证下发行，并已经被包含在众多流行的<code>Linux</code>发行版中。</p>
+<h2>安装</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># cd ~</span>
+<span class="hljs-comment"># yum -y install openldap-servers openldap-clients</span>
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/1c/02ad1e703c7187295361dbff3fad9c.jpg" alt=""></p>
+<pre><code class="language-bash"><span class="hljs-comment"># cp /usr/share/openldap-servers/DB_CONFIG.example /var/lib/ldap/DB_CONFIG</span>
+<span class="hljs-comment"># chown ldap:ldap /var/lib/ldap/DB_CONFIG</span>
+<span class="hljs-comment"># systemctl start slapd</span>
+<span class="hljs-comment"># systemctl enable slapd</span>
+</code></pre>
+<h2>配置</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># slappasswd</span>
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/75/c5c970bd59e02ac7434f217a5f27a6.jpg" alt=""></p>
+<pre><code class="language-bash"><span class="hljs-comment"># vi chrootpw.ldif</span>
+</code></pre>
+<pre><code class="language-properties"><span class="hljs-comment"># specify the password generated above for "olcRootPW" section</span>
+<span class="hljs-attr">dn</span>: <span class="hljs-string">olcDatabase={0}config,cn=config</span>
+<span class="hljs-attr">changetype</span>: <span class="hljs-string">modify</span>
+<span class="hljs-attr">add</span>: <span class="hljs-string">olcRootPW</span>
+<span class="hljs-attr">olcRootPW</span>: <span class="hljs-string">{SSHA}xxxxxxxxxxxxxxxxxxxxxxxx</span>
+</code></pre>
+<pre><code class="language-bash"><span class="hljs-comment"># ldapadd -Y EXTERNAL -H ldapi:/// -f chrootpw.ldif </span>
+</code></pre>
+<h2>导入基本模式</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/cosine.ldif </span>
+<span class="hljs-comment"># ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/nis.ldif </span>
+<span class="hljs-comment"># ldapadd -Y EXTERNAL -H ldapi:/// -f /etc/openldap/schema/inetorgperson.ldif </span>
+</code></pre>
+<h2>在ldap的DB中设置域名</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># slappasswd </span>
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/de/9a4502a39d572493b8ae8d723a08ef.jpg" alt=""></p>
+<pre><code class="language-bash"><span class="hljs-comment"># vi chdomain.ldif</span>
+</code></pre>
+<pre><code class="language-properties"><span class="hljs-comment"># replace to your own domain name for "dc=***,dc=***" section</span>
+<span class="hljs-comment"># specify the password generated above for "olcRootPW" section</span>
+<span class="hljs-attr">dn</span>: <span class="hljs-string">olcDatabase={1}monitor,cn=config</span>
+<span class="hljs-attr">changetype</span>: <span class="hljs-string">modify</span>
+<span class="hljs-attr">replace</span>: <span class="hljs-string">olcAccess</span>
+<span class="hljs-attr">olcAccess</span>: <span class="hljs-string">{0}to * by dn.base="gidNumber=0+uidNumber=0,cn=peercred,cn=external,cn=auth"</span>
+  <span class="hljs-attr">read</span> <span class="hljs-string">by dn.base="cn=Manager,dc=iamzhl,dc=top" read by * none</span>
+
+<span class="hljs-attr">dn</span>: <span class="hljs-string">olcDatabase={2}hdb,cn=config</span>
+<span class="hljs-attr">changetype</span>: <span class="hljs-string">modify</span>
+<span class="hljs-attr">replace</span>: <span class="hljs-string">olcSuffix</span>
+<span class="hljs-attr">olcSuffix</span>: <span class="hljs-string">dc=iamzhl,dc=top</span>
+
+<span class="hljs-attr">dn</span>: <span class="hljs-string">olcDatabase={2}hdb,cn=config</span>
+<span class="hljs-attr">changetype</span>: <span class="hljs-string">modify</span>
+<span class="hljs-attr">replace</span>: <span class="hljs-string">olcRootDN</span>
+<span class="hljs-attr">olcRootDN</span>: <span class="hljs-string">cn=Manager,dc=iamzhl,dc=top</span>
+
+<span class="hljs-attr">dn</span>: <span class="hljs-string">olcDatabase={2}hdb,cn=config</span>
+<span class="hljs-attr">changetype</span>: <span class="hljs-string">modify</span>
+<span class="hljs-attr">add</span>: <span class="hljs-string">olcRootPW</span>
+<span class="hljs-attr">olcRootPW</span>: <span class="hljs-string">{SSHA}xxxxxxxxxxxxxxxxxxxxxxxx</span>
+
+<span class="hljs-attr">dn</span>: <span class="hljs-string">olcDatabase={2}hdb,cn=config</span>
+<span class="hljs-attr">changetype</span>: <span class="hljs-string">modify</span>
+<span class="hljs-attr">add</span>: <span class="hljs-string">olcAccess</span>
+<span class="hljs-attr">olcAccess</span>: <span class="hljs-string">{0}to attrs=userPassword,shadowLastChange by</span>
+  <span class="hljs-attr">dn</span>=<span class="hljs-string">"cn=Manager,dc=iamzhl,dc=top" write by anonymous auth by self write by * none</span>
+<span class="hljs-attr">olcAccess</span>: <span class="hljs-string">{1}to dn.base="" by * read</span>
+<span class="hljs-attr">olcAccess</span>: <span class="hljs-string">{2}to * by dn="cn=Manager,dc=iamzhl,dc=top" write by * read</span>
+</code></pre>
+<pre><code class="language-bash"><span class="hljs-comment"># ldapmodify -Y EXTERNAL -H ldapi:/// -f chdomain.ldif </span>
+</code></pre>
+<pre><code class="language-bash"><span class="hljs-comment"># vi basedomain.ldif</span>
+</code></pre>
+<pre><code class="language-properties"><span class="hljs-comment"># replace to your own domain name for "dc=***,dc=***" section</span>
+<span class="hljs-attr">dn</span>: <span class="hljs-string">dc=iamzhl,dc=top</span>
+<span class="hljs-attr">objectClass</span>: <span class="hljs-string">top</span>
+<span class="hljs-attr">objectClass</span>: <span class="hljs-string">dcObject</span>
+<span class="hljs-attr">objectclass</span>: <span class="hljs-string">organization</span>
+<span class="hljs-attr">o</span>: <span class="hljs-string">iamzhl</span>
+<span class="hljs-attr">dc</span>: <span class="hljs-string">iamzhl</span>
+
+<span class="hljs-attr">dn</span>: <span class="hljs-string">cn=Manager,dc=iamzhl,dc=top</span>
+<span class="hljs-attr">objectClass</span>: <span class="hljs-string">organizationalRole</span>
+<span class="hljs-attr">cn</span>: <span class="hljs-string">Manager</span>
+<span class="hljs-attr">description</span>: <span class="hljs-string">Directory Manager</span>
+
+<span class="hljs-attr">dn</span>: <span class="hljs-string">ou=People,dc=iamzhl,dc=top</span>
+<span class="hljs-attr">objectClass</span>: <span class="hljs-string">organizationalUnit</span>
+<span class="hljs-attr">ou</span>: <span class="hljs-string">People</span>
+
+<span class="hljs-attr">dn</span>: <span class="hljs-string">ou=Group,dc=iamzhl,dc=top</span>
+<span class="hljs-attr">objectClass</span>: <span class="hljs-string">organizationalUnit</span>
+<span class="hljs-attr">ou</span>: <span class="hljs-string">Group</span>
+</code></pre>
+<pre><code class="language-bash"><span class="hljs-comment"># ldapadd -x -D cn=Manager,dc=iamzhl,dc=top -W -f basedomain.ldif </span>
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/d1/46842e7f601199c0f78da4d97d30ad.jpg" alt=""></p>
+<h2>添加一个用户</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># slappasswd </span>
+<span class="hljs-comment"># vi ldapuser.ldif</span>
+</code></pre>
+<pre><code class="language-properties"><span class="hljs-comment"># create new</span>
+<span class="hljs-comment"># replace to your own domain name for "dc=***,dc=***" section</span>
+<span class="hljs-attr">dn</span>: <span class="hljs-string">uid=cent,ou=People,dc=iamzhl,dc=top</span>
+<span class="hljs-attr">objectClass</span>: <span class="hljs-string">inetOrgPerson</span>
+<span class="hljs-attr">objectClass</span>: <span class="hljs-string">posixAccount</span>
+<span class="hljs-attr">objectClass</span>: <span class="hljs-string">shadowAccount</span>
+<span class="hljs-attr">cn</span>: <span class="hljs-string">Cent</span>
+<span class="hljs-attr">sn</span>: <span class="hljs-string">Linux</span>
+<span class="hljs-attr">userPassword</span>: <span class="hljs-string">{SSHA}xxxxxxxxxxxxxxxxx</span>
+<span class="hljs-attr">loginShell</span>: <span class="hljs-string">/bin/bash</span>
+<span class="hljs-attr">uidNumber</span>: <span class="hljs-string">1000</span>
+<span class="hljs-attr">gidNumber</span>: <span class="hljs-string">1000</span>
+<span class="hljs-attr">homeDirectory</span>: <span class="hljs-string">/home/cent</span>
+
+<span class="hljs-attr">dn</span>: <span class="hljs-string">cn=cent,ou=Group,dc=iamzhl,dc=top</span>
+<span class="hljs-attr">objectClass</span>: <span class="hljs-string">posixGroup</span>
+<span class="hljs-attr">cn</span>: <span class="hljs-string">Cent</span>
+<span class="hljs-attr">gidNumber</span>: <span class="hljs-string">1000</span>
+<span class="hljs-attr">memberUid</span>: <span class="hljs-string">cent</span>
+</code></pre>
+<pre><code class="language-bash"><span class="hljs-comment"># ldapadd -x -D cn=Manager,dc=iamzhl,dc=top -W -f ldapuser.ldif </span>
+</code></pre>
+<h2>添加本机的用户和群组到ldap目录</h2>
+<pre><code class="language-bash"><span class="hljs-comment"># vi ldapuser.sh</span>
+</code></pre>
+<pre><code class="language-shell"><span class="hljs-meta">#</span><span class="bash"> extract <span class="hljs-built_in">local</span> users and groups who have 1000-9999 digit UID</span>
+<span class="hljs-meta">#</span><span class="bash"> replace <span class="hljs-string">"SUFFIX=***"</span> to your own domain name</span>
+<span class="hljs-meta">#</span><span class="bash"> this is an example</span>
+<span class="hljs-meta">#</span><span class="bash">!/bin/bash</span>
+
+SUFFIX='dc=iamzhl,dc=top'
+LDIF='ldapuser.ldif'
+
+echo -n &gt; $LDIF
+GROUP_IDS=()
+grep "x:[1-9][0-9][0-9][0-9]:" /etc/passwd | (while read TARGET_USER
+do
+    USER_ID="$(echo "$TARGET_USER" | cut -d':' -f1)"
+
+    USER_NAME="$(echo "$TARGET_USER" | cut -d':' -f5 | cut -d' ' -f1,2)"
+    [ ! "$USER_NAME" ] &amp;&amp; USER_NAME="$USER_ID"
+
+    LDAP_SN="$(echo "$USER_NAME" | cut -d' ' -f2)"
+    [ ! "$LDAP_SN" ] &amp;&amp; LDAP_SN="$USER_NAME"
+
+    LASTCHANGE_FLAG="$(grep "${USER_ID}:" /etc/shadow | cut -d':' -f3)"
+    [ ! "$LASTCHANGE_FLAG" ] &amp;&amp; LASTCHANGE_FLAG="0"
+
+    SHADOW_FLAG="$(grep "${USER_ID}:" /etc/shadow | cut -d':' -f9)"
+    [ ! "$SHADOW_FLAG" ] &amp;&amp; SHADOW_FLAG="0"
+
+    GROUP_ID="$(echo "$TARGET_USER" | cut -d':' -f4)"
+    [ ! "$(echo "${GROUP_IDS[@]}" | grep "$GROUP_ID")" ] &amp;&amp; GROUP_IDS=("${GROUP_IDS[@]}" "$GROUP_ID")
+
+    echo "dn: uid=$USER_ID,ou=People,$SUFFIX" &gt;&gt; $LDIF
+    echo "objectClass: inetOrgPerson" &gt;&gt; $LDIF
+    echo "objectClass: posixAccount" &gt;&gt; $LDIF
+    echo "objectClass: shadowAccount" &gt;&gt; $LDIF
+    echo "sn: $LDAP_SN" &gt;&gt; $LDIF
+    echo "givenName: $(echo "$USER_NAME" | awk '{print $1}')" &gt;&gt; $LDIF
+    echo "cn: $USER_NAME" &gt;&gt; $LDIF
+    echo "displayName: $USER_NAME" &gt;&gt; $LDIF
+    echo "uidNumber: $(echo "$TARGET_USER" | cut -d':' -f3)" &gt;&gt; $LDIF
+    echo "gidNumber: $(echo "$TARGET_USER" | cut -d':' -f4)" &gt;&gt; $LDIF
+    echo "userPassword: {crypt}$(grep "${USER_ID}:" /etc/shadow | cut -d':' -f2)" &gt;&gt; $LDIF
+    echo "gecos: $USER_NAME" &gt;&gt; $LDIF
+    echo "loginShell: $(echo "$TARGET_USER" | cut -d':' -f7)" &gt;&gt; $LDIF
+    echo "homeDirectory: $(echo "$TARGET_USER" | cut -d':' -f6)" &gt;&gt; $LDIF
+    echo "shadowExpire: $(passwd -S "$USER_ID" | awk '{print $7}')" &gt;&gt; $LDIF
+    echo "shadowFlag: $SHADOW_FLAG" &gt;&gt; $LDIF
+    echo "shadowWarning: $(passwd -S "$USER_ID" | awk '{print $6}')" &gt;&gt; $LDIF
+    echo "shadowMin: $(passwd -S "$USER_ID" | awk '{print $4}')" &gt;&gt; $LDIF
+    echo "shadowMax: $(passwd -S "$USER_ID" | awk '{print $5}')" &gt;&gt; $LDIF
+    echo "shadowLastChange: $LASTCHANGE_FLAG" &gt;&gt; $LDIF
+    echo &gt;&gt; $LDIF
+done
+
+for TARGET_GROUP_ID in "${GROUP_IDS[@]}"
+do
+    LDAP_CN="$(grep ":${TARGET_GROUP_ID}:" /etc/group | cut -d':' -f1)"
+
+    echo "dn: cn=$LDAP_CN,ou=Group,$SUFFIX" &gt;&gt; $LDIF
+    echo "objectClass: posixGroup" &gt;&gt; $LDIF
+    echo "cn: $LDAP_CN" &gt;&gt; $LDIF
+    echo "gidNumber: $TARGET_GROUP_ID" &gt;&gt; $LDIF
+
+    for MEMBER_UID in $(grep ":${TARGET_GROUP_ID}:" /etc/passwd | cut -d':' -f1,3)
+    do
+        UID_NUM=$(echo "$MEMBER_UID" | cut -d':' -f2)
+        [ $UID_NUM -ge 1000 -a $UID_NUM -le 9999 ] &amp;&amp; echo "memberUid: $(echo "$MEMBER_UID" | cut -d':' -f1)" &gt;&gt; $LDIF
+    done
+    echo &gt;&gt; $LDIF
+done
+)
+</code></pre>
+<pre><code class="language-bash"><span class="hljs-comment"># sh ldapuser.sh </span>
+<span class="hljs-comment"># ldapadd -x -D cn=Manager,dc=iamzhl,dc=top -W -f ldapuser.ldif </span>
+</code></pre>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/d5/aaa70f4f22ad6ee40fa74bf027bd4b.jpg" alt=""></p>
+<h2>利用Apache Directory Studio进行管理</h2>
+<p>Apache Directory Studio 是一个 LDAP 的工具平台，用来连接到任何 LDAP 服务器并进行管理和开发工作。其可以实现以下功能：</p>
+<ul>
+<li>LDAP浏览器</li>
+<li>LDIF编辑器</li>
+<li>嵌入式 ApacheDS</li>
+<li>ACI编辑器</li>
+<li>属性管理</li>
+</ul>
+<p>下面以新建连接和新增用户为例进行演示</p>
+<p>如图，点击 New Connection 新建一个 ldap 连接</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/12/d782ef026127039c48173727402ae1.jpg" alt=""></p>
+<p>依次输入连接名、主机名以及端口号后点击<code>Next</code></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/b4/8238cc5d14bd32906fb1bf4d2fb726.jpg" alt=""></p>
+<p>再依次输入绑定的<code>DN</code>和密码后点击<code>Finish</code></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/6d/33932a9dccd444922051239295a40e.jpg" alt=""></p>
+<p>新建一个 openLDAP 用户 test / 123456</p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/0e/e69bb807212cc32a80cb28c4b927e1.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/01/ab9d40ac8d216e3e2b99a287082fa7.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/14/de8c6a3b3854b28bca29d84e338f9f.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/53/287f9a9a0cfe1c25c3c66d775fb214.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/af/af3a63b732070ac51f27b10f6e2dca.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/b3/da28177e70ab2cb77421d6ae16ca95.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/70/749184f3907b06951093fc2a944e42.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/c0/5ddca5f311e7f8b2ba598480c3636e.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/e7/8a989532254213ac72efc235676a2a.jpg" alt=""></p>
+<p><img src="https://raw.githubusercontent.com/athlonreg/BlogImages/master/Images/2e/ebca96c81bd780e9b90d9bdbd3415a.jpg" alt=""></p>
+<h2>Credits</h2>
+<p>本文多处参考<a href="https://blog.csdn.net/wenwenxiong/article/details/76855047">centos7下ldap服务搭建</a>，感谢<a href="https://blog.csdn.net/wenwenxiong">wenwenxiong</a>的分享。</p>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/dubbo_gray.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>文档所有内容遵循开源协议</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/dir/CAS-5-3-4-install-and-deploy.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2018 https://blog.iamzhl.top/</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/documentation.js"></script>
+</body>
+</html>

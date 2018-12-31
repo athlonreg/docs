@@ -1,0 +1,35 @@
+pages:
+ # key is the dirname of pages in src/pages
+ home:
+  # 首页配置
+  zh-cn:
+   title: 'DevOps首页'
+   keywords: 'DevOps，生态'
+   description: '自动化持续集成平台'
+  # home config
+  en-us:
+   title: 'DevOps首页'
+   keywords: 'DevOps，生态'
+   description: '自动化持续集成平台'
+ community:
+  # 社区页配置
+  zh-cn:
+   title: 'DevOps社区'
+   keywords: 'DevOps，生态'
+   description: '自动化持续集成平台'
+  # community page config
+  en-us:
+   title: 'DevOps社区'
+   keywords: 'DevOps，生态'
+   description: '自动化持续集成平台'
+ blog:
+  # 博客列表页配置
+  zh-cn:
+   title: 'DevOps博客'
+   keywords: 'DevOps，生态'
+   description: '自动化持续集成平台'
+  en-us:
+   # blog list page config
+   title: 'DevOps博客'
+   keywords: 'DevOps，生态'
+   description: '自动化持续集成平台'

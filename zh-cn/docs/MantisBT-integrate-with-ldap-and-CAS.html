@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="keywords" content="MantisBT-integrate-with-ldap-and-CAS" />
+	<meta name="description" content="MantisBT 整合 LDAP 和 CAS 单点登录" />
+	<!-- 网页标签标题 -->
+	<title>MantisBT 整合 LDAP 和 CAS 单点登录</title>
+	<link rel="shortcut icon" href="/img/docsite.ico"/>
+	<link rel="stylesheet" href="/build/documentation.css" />
+</head>
+<body>
+	<div id="root"><div class="documentation-page" data-reactroot=""><header class="header-container header-container-normal"><div class="header-body"><a href="/zh-cn/index.html"><img class="logo" src="/img/dubbo_colorful.png"/></a><div class="search search-normal"><span class="icon-search"></span></div><span class="language-switch language-switch-normal">En</span><div class="header-menu"><img class="header-menu-toggle" src="/img/system/menu_gray.png"/><ul><li class="menu-item menu-item-normal"><a href="/zh-cn/index.html" target="_self">首页</a></li><li class="menu-item menu-item-normal menu-item-normal-active"><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">文档</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/blog/index.html" target="_self">博客</a></li><li class="menu-item menu-item-normal"><a href="/zh-cn/community/index.html" target="_self">社区</a></li></ul></div></div></header><div class="bar"><div class="bar-body"><img src="/img/system/docs.png" class="front-img"/><span>文档</span><img src="/img/system/docs.png" class="back-img"/></div></div><section class="content-section"><div class="sidemenu"><div class="sidemenu-toggle"><img src="https://img.alicdn.com/tfs/TB1E6apXHGYBuNjy0FoXXciBFXa-200-200.png"/></div><ul><li class="menu-item menu-item-level-1"><span>文档</span><ul><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/0-1-backpack.html" target="_self">01背包问题</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Allow-apps-downloaded-from-anywhere-in-macOS.html" target="_self">macOS开启任何来源</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">CAS 5.3.4 安装部署</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/CentOS-install-openLDAP.html" target="_self">CentOS 安装部署 openLDAP</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/TestLink-integrate-with-ldap-and-CAS.html" target="_self">TestLink 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/TestLink-install-and-deploy.md.html" target="_self">TestLink 安装部署</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/SonarQube-install-and-deploy.html" target="_self">SonarQube 安装部署</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/SonarQube-integrate-with-ldap-and-CAS.html" target="_self">SonarQube 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/shadowsocks-libev.html" target="_self">CentOS 搭建 ShadowSocks 访问墙外的世界</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/MantisBT-install-and-deploy.html" target="_self">CentOS 安装部署 MantisBT</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/MantisBT-integrate-with-ldap-and-CAS.html" target="_self">MantisBT 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Jenkins-configure-and-deploy.md.html" target="_self">CentOS 安装部署 Jenkins</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Jenkins-integrate-with-ldap-and-CAS.html" target="_self">Jenkins 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Install-macOS-on-laptop.html" target="_self">笔记本安装黑苹果教程</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Gerrit-install-and-deploy.html" target="_self">CentOS 安装部署 Gerrit</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Gerrit-integrate-with-ldap-and-CAS.html" target="_self">Gerrit 整合 LDAP 和 CAS 单点登录</a></li><li style="height:36px;overflow:hidden" class="menu-item menu-item-level-2"><a href="/zh-cn/docs/Custom-terminal-on-your-mac.html" target="_self">iTerm2 + ohmyzsh + powerlevel9k + tmux 打造专属个性化终端</a></li><li style="height:72px;overflow:hidden" class="menu-item menu-item-level-2"><span>目录<img style="transform:rotate(0deg)" class="menu-toggle" src="/img/system/arrow_down.png"/></span><ul><li class="menu-item menu-item-level-3"><a href="/zh-cn/docs/dir/demo3.html" target="_self">示例3</a></li></ul></li></ul></li></ul></div><div class="doc-content markdown-body"><h2>背景介绍</h2>
+<ul>
+<li>MantisBT 版本：2.18</li>
+<li>Mantis URL：<a href="http://devops.iamzhl.top/mantis">http://devops.iamzhl.top/mantis</a></li>
+<li>openLDAP 服务：ldap://devops.iamzhl.top:389</li>
+<li>CAS 服务：<a href="http://devops.iamzhl.top:8080/cas">http://devops.iamzhl.top:8080/cas</a></li>
+</ul>
+<h2>整合 LDAP</h2>
+<h3>修改<code>MantisBT</code>配置文件</h3>
+<blockquote>
+<p>添加以下配置项</p>
+</blockquote>
+<pre><code class="language-php"><span class="hljs-comment"># MantisBT Authentication and LDAP Settings #</span>
+$g_login_method = LDAP;
+$g_reauthentication = ON;
+$g_reauthentication_expiry = TOKEN_EXPIRY_AUTHENTICATED;
+$g_ldap_server = <span class="hljs-string">'ldap://devops.iamzhl.top:389'</span>;
+$g_ldap_root_dn = <span class="hljs-string">'ou=People,dc=iamzhl,dc=top'</span>;
+$g_ldap_protocol_version = <span class="hljs-number">3</span>;
+$g_ldap_organization = <span class="hljs-string">''</span>;
+$g_ldap_bind_dn = <span class="hljs-string">'cn=Manager,dc=iamzhl,dc=top'</span>;
+$g_ldap_bind_passwd = <span class="hljs-string">'123456'</span>;
+$g_ldap_uid_field = <span class="hljs-string">'uid'</span>;
+$g_ldap_realname_field = <span class="hljs-string">'cn'</span>;
+$g_use_ldap_realname = ON;
+$g_use_ldap_email = ON;
+</code></pre>
+<p>打开<code>MantisBT</code>网址，输入用户名密码点击登录</p>
+<p><img src="https://gitee.com/athlonreg/picbed/raw/master/Images/dd/a754582a7218fd2860d31fb543c667.jpg" alt=""></p>
+<p><img src="https://gitee.com/athlonreg/picbed/raw/master/Images/07/158dfd797dce0fa01335dd8d9b5085.jpg" alt=""></p>
+<p>登陆成功后，正常获取用户名</p>
+<p><img src="https://gitee.com/athlonreg/picbed/raw/master/Images/5d/e2fd0f937861208615ce61fae90423.jpg" alt=""></p>
+<p>点击右上角的用户名 -&gt; 注销，会正常退出并跳转到登录界面</p>
+<p><img src="https://gitee.com/athlonreg/picbed/raw/master/Images/5e/e198803ba7693b67b5e6c5fc075ab5.jpg" alt=""></p>
+<p>至此，<code>MantisBT</code>整合<code>LDAP</code>完成。</p>
+<h2>整合 CAS 单点登录</h2>
+<h3>下载<code>phpCAS</code>放到<code>MantisBT</code>下</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># wget https://github.com/apereo/phpCAS/archive/1.3.6.tar.gz</span>
+<span class="hljs-comment"># mv 1.3.6.tar.gz phpCAS-1.3.6.tar.gz</span>
+<span class="hljs-comment"># tar zxvf phpCAS-1.3.6.tar.gz</span>
+<span class="hljs-comment"># chown -R apache:apache phpCAS-1.3.6</span>
+<span class="hljs-comment"># cp -arf phpCAS-1.3.6 /var/www/html/mantis/phpCAS</span>
+</code></pre>
+<h3>修改<code>MantisBT</code>配置文件</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># vi /var/www/html/mantis/config/config_inc.php</span>
+</code></pre>
+<blockquote>
+<p>添加<code>CAS</code>认证需要的变量(请按照自己的<code>LDAP</code>服务器进行修改)</p>
+</blockquote>
+<pre><code class="language-php"><span class="hljs-comment"># MantisBT Authentication With CAS Settings #</span>
+$g_login_method = CAS;
+$g_cas_server = <span class="hljs-string">'devops.iamzhl.top'</span>;
+$g_cas_port = <span class="hljs-number">8080</span>;
+$g_cas_uri = <span class="hljs-string">'/cas'</span>;
+$g_cas_validate = <span class="hljs-string">''</span>;
+$g_cas_version = <span class="hljs-string">'2.0'</span>;
+$g_cas_debug = <span class="hljs-string">'/var/www/html/mantis/cas.log'</span>;
+$g_cas_saml_attributes = OFF;
+$g_cas_saml_map = <span class="hljs-keyword">array</span>( <span class="hljs-string">'name'</span> =&gt; <span class="hljs-string">''</span>, <span class="hljs-string">'mail'</span> =&gt; <span class="hljs-string">''</span> );
+$g_cas_use_ldap = ON;
+$g_ldap_mantis_uid  = <span class="hljs-string">'uid'</span>;
+$g_cas_ldap_update  = OFF;
+$g_cas_ldap_update_fields = <span class="hljs-string">''</span>;
+$g_cas_ldap_update_map    = <span class="hljs-string">''</span>;
+$g_ldap_language_field = <span class="hljs-string">''</span>;
+$g_ldap_language_keys = <span class="hljs-string">''</span>;
+</code></pre>
+<h3>修改登录页面</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># vi /var/www/html/mantis/login_page.php</span>
+</code></pre>
+<pre><code class="language-php"><span class="hljs-comment">// 在文件开头的 require_once 部分增加对 phpCAS 的引入</span>
+<span class="hljs-keyword">require_once</span>( <span class="hljs-string">'/var/www/html/mantis/phpCAS/login_cas.php'</span> );
+<span class="hljs-comment">// 在 $f_username 变量的定义之前添加判断语句，当检测到用户已经认证时，跳转到主页</span>
+<span class="hljs-keyword">if</span>( auth_is_user_authenticated() &amp;&amp; !current_user_is_anonymous() ) {
+	print_header_redirect( config_get( <span class="hljs-string">'default_home_page'</span> ) );
+}
+</code></pre>
+<pre><code class="language-bash"><span class="hljs-comment"># vi /var/www/html/mantis/login.php</span>
+</code></pre>
+<pre><code class="language-php"><span class="hljs-comment">// 在判断变量 f_install 的判断语句之后添加下面的判断语句来判断验证方式，若为 CAS ，则利用 auth_cas_get_name 函数来处理</span>
+<span class="hljs-keyword">if</span> ( CAS == config_get( <span class="hljs-string">'login_method'</span> ) ) {
+	<span class="hljs-comment"># This will detour to the CAS login page if needed</span>
+	$f_password = <span class="hljs-string">''</span>;
+	$f_username = auth_cas_get_name();
+	<span class="hljs-comment"># User is always authenticated by this point</span>
+}
+</code></pre>
+<pre><code class="language-bash"><span class="hljs-comment"># vi /var/www/html/mantis/login_password_page.php</span>
+</code></pre>
+<pre><code class="language-php"><span class="hljs-comment">// 在 $f_username 变量的定义之前添加判断语句，当检测到用户已经认证时，跳转到主页</span>
+<span class="hljs-keyword">if</span>( auth_is_user_authenticated() &amp;&amp; !current_user_is_anonymous() ) {
+	print_header_redirect( config_get( <span class="hljs-string">'default_home_page'</span> ) );
+}
+$f_username              = gpc_get_string( <span class="hljs-string">'username'</span>, <span class="hljs-string">''</span> );
+<span class="hljs-comment"># zhanghl start</span>
+<span class="hljs-keyword">if</span>( $f_username == <span class="hljs-string">''</span> ) {
+        $f_username = $staffid;
+}
+<span class="hljs-comment"># zhanghl end</span>
+</code></pre>
+<h3>修改登出页面</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># vi /var/www/html/mantis/logout_page.php</span>
+</code></pre>
+<pre><code class="language-php"><span class="hljs-comment">// 在文件开头的 require_once 部分增加对 phpCAS 的引入</span>
+<span class="hljs-keyword">require_once</span>( <span class="hljs-string">'/var/www/html/mantis/phpCAS/login_cas.php'</span> );
+<span class="hljs-comment"># Cache the current logout redirect page as it will be cleared by auth_logout()</span>
+<span class="hljs-comment">//$t_logout_redirect = auth_logout_redirect_page();</span>
+
+<span class="hljs-comment">//auth_logout();</span>
+phpCAS::setDebug();
+phpCAS::setVerbose(<span class="hljs-keyword">true</span>);
+phpCAS::handleLogoutRequests();
+phpCAS::logout();
+
+<span class="hljs-comment">//print_header_redirect( $t_logout_redirect, true, false );</span>
+print_header_redirect( config_get( <span class="hljs-string">'logout_redirect_page'</span> ), <span class="hljs-keyword">true</span>, <span class="hljs-keyword">false</span> );
+</code></pre>
+<h3>修改验证逻辑</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># vi /var/www/html/mantis/core/authentication_api.php</span>
+</code></pre>
+<pre><code class="language-php"><span class="hljs-comment">// 在变量 g_cache_current_user_id 的定义后面添加以下函数，定义 CAS 的登录逻辑</span>
+<span class="hljs-comment">/**
+* Initialize phpCAS.
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">auth_cas_init</span><span class="hljs-params">()</span> </span>{
+       <span class="hljs-comment"># phpCAS must be installed in the include path</span>
+       <span class="hljs-comment"># or in the Mantis directory.</span>
+       <span class="hljs-keyword">require_once</span>(<span class="hljs-string">'/var/www/html/mantis/phpCAS/CAS.php'</span>);
+
+       <span class="hljs-keyword">static</span> $s_initialized=<span class="hljs-keyword">false</span>;
+
+       <span class="hljs-keyword">if</span> (! $s_initialized ) {
+               phpCAS::setDebug( config_get( <span class="hljs-string">'cas_debug'</span> ) );
+       	       <span class="hljs-comment">## These should be set in config_inc.php</span>
+               $t_server_version = config_get( <span class="hljs-string">'cas_version'</span> );
+               $t_server_cas_server = config_get( <span class="hljs-string">'cas_server'</span> );
+               $t_server_port = config_get( <span class="hljs-string">'cas_port'</span> );
+               $t_server_uri = config_get( <span class="hljs-string">'cas_uri'</span> );
+               $t_start_session = (boolean)<span class="hljs-keyword">FALSE</span>; <span class="hljs-comment"># Mantis takes care of its own session</span>
+
+               phpCAS::client($t_server_version, $t_server_cas_server, $t_server_port, $t_server_uri, $t_start_session);
+               <span class="hljs-keyword">if</span> ($t_server_version == <span class="hljs-string">"S1"</span>)
+                       phpCAS::setServerSamlValidateURL( config_get( <span class="hljs-string">'cas_validate'</span> ) );
+               <span class="hljs-keyword">else</span>
+                       phpCAS::setServerProxyValidateURL( config_get( <span class="hljs-string">'cas_validate'</span> ) );
+               <span class="hljs-keyword">if</span> (method_exists(<span class="hljs-string">'phpCAS'</span>, <span class="hljs-string">'setNoCasServerValidation'</span>)) {
+                       <span class="hljs-comment">// no SSL validation for the CAS server</span>
+                       phpCAS::setNoCasServerValidation();
+               }
+
+               $s_initialized = <span class="hljs-keyword">true</span>;
+       }
+
+}
+
+<span class="hljs-comment">/**
+* Fetches the user's CAS name, authenticating if needed.
+* Can translate CAS login name to Mantis username through LDAP.
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">auth_cas_get_name</span><span class="hljs-params">()</span>
+</span>{
+       <span class="hljs-comment"># Get CAS username from phpCAS</span>
+       auth_cas_init();
+       phpCAS::forceAuthentication();
+       $t_cas_id = phpCAS::getUser();
+       $t_cas_attribs = phpCAS::getAttributes();
+
+       <span class="hljs-comment"># If needed, translate the CAS username through LDAP</span>
+       $t_username = $t_cas_id;
+       <span class="hljs-keyword">if</span> (config_get( <span class="hljs-string">'cas_use_ldap'</span>, <span class="hljs-keyword">false</span> )) {
+               $t_username = auth_cas_ldap_translate( $t_cas_id );
+       }
+       <span class="hljs-keyword">elseif</span> (config_get( <span class="hljs-string">'cas_saml_attributes'</span>, <span class="hljs-keyword">false</span> )) {
+               $t_cas_attribmap = config_get( <span class="hljs-string">'cas_saml_map'</span>, <span class="hljs-keyword">array</span>() );
+               $t_cas_attrib_name = $t_cas_attribs[$t_cas_attribmap[<span class="hljs-string">'name'</span>]];
+               $t_cas_attrib_mail = $t_cas_attribs[$t_cas_attribmap[<span class="hljs-string">'mail'</span>]];
+               <span class="hljs-keyword">if</span> ( user_get_id_by_name($t_cas_id) == <span class="hljs-keyword">false</span> ) {
+                       user_create( $t_cas_id, <span class="hljs-string">''</span>, $t_cas_attrib_mail, <span class="hljs-keyword">null</span>, <span class="hljs-keyword">false</span>, <span class="hljs-keyword">true</span>, $t_cas_attrib_name );
+	       }
+       }
+                               
+       <span class="hljs-keyword">return</span> $t_username;
+}
+
+<span class="hljs-comment">/**
+* Takes an ID string, and looks up the LDAP directory to find
+* the matching username for Mantis.
+*
+* Optionally, also update the user information in the Mantis user
+* table.
+*
+* <span class="hljs-doctag">@param</span> $p_cas_id string Typically, the username given by phpCAS.
+* <span class="hljs-doctag">@param</span> $p_update_user bool Whether or not to update user details from LDAP.
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">auth_cas_ldap_translate</span><span class="hljs-params">( $p_cas_id, $p_update_user=<span class="hljs-string">''</span> )</span>
+</span>{
+
+       <span class="hljs-comment"># Please make sure the Mantis CAS and LDAP settings are set in config_inc.php</span>
+
+       $t_ldap_organization    = config_get( <span class="hljs-string">'ldap_organization'</span> );
+       $t_ldap_root_dn         = config_get( <span class="hljs-string">'ldap_root_dn'</span> );
+
+       <span class="hljs-comment"># Required fields in LDAP for CAS</span>
+       $t_ldap_language_field = config_get( <span class="hljs-string">'ldap_language_field'</span>, <span class="hljs-string">''</span> );
+       $t_ldap_uid_field = config_get( <span class="hljs-string">'ldap_uid_field'</span>, <span class="hljs-string">'uid'</span> ) ;
+       $t_ldap_mantis_uid = config_get( <span class="hljs-string">'ldap_mantis_uid'</span>, <span class="hljs-string">'uid'</span> );
+       $t_ldap_required = <span class="hljs-keyword">array</span>( $t_ldap_uid_field, $t_ldap_mantis_uid, <span class="hljs-string">'dn'</span> );
+       <span class="hljs-keyword">if</span> ($t_ldap_language_field) {
+               <span class="hljs-comment">// Add language field to attributes list only if it is configured.</span>
+               $t_ldap_required[] = $t_ldap_language_field;
+       }
+       $t_ldap_required = array_combine( $t_ldap_required, $t_ldap_required );
+
+       <span class="hljs-comment"># User-defined fields to fetch from LDAP...</span>
+       $t_ldap_fields = explode( <span class="hljs-string">','</span>, config_get( <span class="hljs-string">'cas_ldap_update_fields'</span> ) );
+       $t_ldap_fields = array_combine( $t_ldap_fields, $t_ldap_fields );
+       <span class="hljs-comment"># ...which are mapped to Mantis user fields</span>
+       $t_ldap_map = explode( <span class="hljs-string">','</span>, config_get( <span class="hljs-string">'cas_ldap_update_map'</span> ) );
+       $t_ldap_map = array_combine( $t_ldap_map, $t_ldap_map );
+
+       <span class="hljs-comment"># Build LDAP search filter, attribute list from CAS ID</span>
+       $t_search_filter = <span class="hljs-string">"(&amp;$t_ldap_organization($t_ldap_uid_field=$p_cas_id))"</span>;
+       $t_search_attrs = array_values($t_ldap_required + $t_ldap_fields);      <span class="hljs-comment"># array union</span>
+
+       <span class="hljs-comment"># Use Mantis ldap_api to connect to LDAP</span>
+       $t_ds = ldap_connect_bind();
+       $t_sr   = ldap_search( $t_ds, $t_ldap_root_dn, $t_search_filter, $t_search_attrs );
+       $t_info = ldap_get_entries( $t_ds, $t_sr );
+       <span class="hljs-comment"># Parse the LDAP entry to find the Mantis username</span>
+       <span class="hljs-keyword">if</span> ( $t_info ) {
+               <span class="hljs-comment"># Get Mantis username</span>
+               $t_username = $t_info[<span class="hljs-number">0</span>][$t_ldap_mantis_uid][<span class="hljs-number">0</span>];
+
+               <span class="hljs-comment"># @@@ The fact that we got here means the user is authenticated</span>
+               <span class="hljs-comment"># @@@ by CAS, and has an LDAP entry.</span>
+               <span class="hljs-comment"># @@@ We might as well update other user details since we are here.</span>
+
+               <span class="hljs-comment"># If no argument given, check settings</span>
+               <span class="hljs-keyword">if</span> ( <span class="hljs-string">''</span> == $p_update_user ) {
+                       $p_update_user = config_get( <span class="hljs-string">'cas_ldap_update'</span>, <span class="hljs-keyword">FALSE</span> );
+               }
+               <span class="hljs-comment"># If there's a user record, then update it</span>
+               <span class="hljs-keyword">if</span> ( $p_update_user ) {
+                       <span class="hljs-comment"># Only proceed if the field map arrays are the same length</span>
+                       $t_field_map = array_combine( $t_ldap_fields, $t_ldap_map );
+                       <span class="hljs-keyword">if</span> ($t_field_map) {
+                               <span class="hljs-comment"># If user is new, then we must create their account before updating it</span>
+                               <span class="hljs-comment"># @@@ ( make sure $g_allow_blank_email == ON )</span>
+                               $t_userid = user_get_id_by_name($t_username);
+                               <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">false</span> == $t_userid ) {
+                                       user_create( $t_username, <span class="hljs-string">''</span> );
+                                       <span class="hljs-comment"># @@@ Wow, this is pretty lame</span>
+                                       $t_userid = user_get_id_by_name($t_username);
+                               }
+                               <span class="hljs-comment"># @@@ maybe we can optimize this to write all fields at once?</span>
+                             <span class="hljs-keyword">foreach</span> ( $t_field_map <span class="hljs-keyword">as</span> $key=&gt;$t_userfield ) {
+                                     <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>($t_info[<span class="hljs-number">0</span>][$key][<span class="hljs-number">0</span>])) {
+                                             user_set_field( $t_userid, $t_userfield, $t_info[<span class="hljs-number">0</span>][$key][<span class="hljs-number">0</span>] );
+                                     }
+                             }
+                       }
+
+                       <span class="hljs-comment">// Update user's overall language preference</span>
+                       <span class="hljs-keyword">if</span> ($t_ldap_language_field) {
+                               $t_language = $t_info[<span class="hljs-number">0</span>][$t_ldap_language_field][<span class="hljs-number">0</span>];
+                               <span class="hljs-comment">// Map the LDAP language field to Mantis' language field if needed</span>
+                               $t_language_keys = config_get( <span class="hljs-string">'ldap_language_keys'</span>, <span class="hljs-string">''</span>);
+                               $t_language_values = config_get( <span class="hljs-string">'ldap_language_values'</span>, <span class="hljs-string">''</span>);
+                               $t_language_map = array_combine(
+                                       explode(<span class="hljs-string">','</span>, $t_language_keys),
+                                       explode(<span class="hljs-string">','</span>, $t_language_values)
+                               );
+                               <span class="hljs-keyword">if</span> (<span class="hljs-keyword">isset</span>($t_language_map[$t_language])) {
+                                       $t_language = $t_language_map[$t_language];
+                               }
+                               user_pref_set_pref($t_userid, <span class="hljs-string">'language'</span>, $t_language);
+                       }
+               }
+       }
+       ldap_free_result( $t_sr );
+       ldap_unbind( $t_ds );
+
+       <span class="hljs-keyword">return</span> $t_username;
+}
+
+<span class="hljs-comment">/**
+* Logs out of CAS, redirecting to Mantis on re-login.
+* User should already be logged out of Mantis by the time this is called.
+* <span class="hljs-doctag">@see</span> auth_logout()
+*/</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">auth_cas_logout</span><span class="hljs-params">()</span>
+</span>{
+       $t_path = config_get(<span class="hljs-string">'path'</span>);
+       auth_cas_init();
+
+       <span class="hljs-keyword">if</span> (method_Exists(<span class="hljs-string">'phpCAS'</span>, <span class="hljs-string">'logoutWithUrl'</span>)) {
+               phpCAS::logoutWithUrl($t_path);
+       } <span class="hljs-keyword">else</span> {
+               phpCAS::logout($t_path);
+       }
+}
+<span class="hljs-comment">// zhanghl end</span>
+</code></pre>
+<pre><code class="language-php"><span class="hljs-comment">// 修改 auth_auto_create_user 函数实现 CAS 自动创建用户</span>
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">auth_auto_create_user</span><span class="hljs-params">( $p_username, $p_password )</span> </span>{
+	$t_login_method = config_get_global( <span class="hljs-string">'login_method'</span> );
+
+	<span class="hljs-comment">// if( $t_login_method == BASIC_AUTH ) {</span>
+	<span class="hljs-keyword">if</span> ( in_array( $t_login_method, <span class="hljs-keyword">array</span>( BASIC_AUTH, CAS ) ) ) {
+		<span class="hljs-comment"># attempt to create the user if using BASIC_AUTH or CAS</span>
+		$t_auto_create = <span class="hljs-keyword">true</span>;
+	} <span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>( $t_login_method == LDAP &amp;&amp; ldap_authenticate_by_username( $p_username, $p_password ) ) {
+		$t_auto_create = <span class="hljs-keyword">true</span>;
+	} <span class="hljs-keyword">else</span> {
+		$t_auto_create = <span class="hljs-keyword">false</span>;
+	}
+
+	<span class="hljs-keyword">if</span> ( CAS == config_get( <span class="hljs-string">'login_method'</span> ) ) {
+		<span class="hljs-comment"># Redirect to CAS page to logout</span>
+		auth_cas_logout();
+	}
+
+	<span class="hljs-keyword">if</span>( $t_auto_create ) {
+		<span class="hljs-comment"># attempt to create the user</span>
+		$t_cookie_string = user_create( $p_username, md5( $p_password ) );
+		<span class="hljs-keyword">if</span>( $t_cookie_string === <span class="hljs-keyword">false</span> ) {
+			<span class="hljs-comment"># it didn't work</span>
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+		}
+
+		<span class="hljs-comment"># ok, we created the user, get the row again</span>
+		<span class="hljs-keyword">return</span> user_get_id_by_name( $p_username );
+	}
+
+	session_clean();
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+}
+</code></pre>
+<pre><code class="language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">auth_attempt_login</span><span class="hljs-params">( $p_username, $p_password, $p_perm_login = false )</span> </span>{
+	$t_user_id = auth_get_user_id_from_login_name( $p_username );
+	$t_login_method = config_get( <span class="hljs-string">'login_method'</span> );
+
+	<span class="hljs-keyword">if</span>( $t_user_id === <span class="hljs-keyword">false</span> ) {
+		<span class="hljs-keyword">if</span> ( in_array( $t_login_method, <span class="hljs-keyword">array</span>( BASIC_AUTH, CAS ) ) ) {
+            <span class="hljs-comment"># attempt to create the user if using BASIC_AUTH or CAS</span>
+            <span class="hljs-comment"># ( note: CAS must have $g_allow_blank_email == ON )</span>
+ 			$t_auto_create = <span class="hljs-keyword">true</span>;
+		}
+		$t_user_id = auth_auto_create_user( $p_username, $p_password );
+		<span class="hljs-keyword">if</span>( $t_user_id === <span class="hljs-keyword">false</span> ) {
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+		}
+	}
+
+	<span class="hljs-comment"># max. failed login attempts achieved...</span>
+	<span class="hljs-keyword">if</span>( !user_is_login_request_allowed( $t_user_id ) ) {
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+	}
+
+	<span class="hljs-comment"># check for anonymous login</span>
+	<span class="hljs-keyword">if</span>( !user_is_anonymous( $t_user_id ) ) {
+		<span class="hljs-comment"># anonymous login didn't work, so check the password</span>
+		<span class="hljs-keyword">if</span>( !auth_does_password_match( $t_user_id, $p_password ) ) {
+			user_increment_failed_login_count( $t_user_id );
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+		}
+	}
+
+	<span class="hljs-keyword">return</span> auth_login_user( $t_user_id, $p_perm_login );
+}
+</code></pre>
+<pre><code class="language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">auth_logout</span><span class="hljs-params">()</span> </span>{
+	<span class="hljs-keyword">global</span> $g_cache_current_user_id, $g_cache_cookie_valid;
+
+	<span class="hljs-comment"># clear cached userid</span>
+	user_clear_cache( $g_cache_current_user_id );
+	current_user_set( <span class="hljs-keyword">null</span> );
+	$g_cache_cookie_valid = <span class="hljs-keyword">null</span>;
+
+	<span class="hljs-comment"># clear cookies, if they were set</span>
+	<span class="hljs-keyword">if</span>( auth_clear_cookies() ) {
+		helper_clear_pref_cookies();
+	}
+
+	<span class="hljs-keyword">if</span>( HTTP_AUTH == config_get_global( <span class="hljs-string">'login_method'</span> ) ) {
+		auth_http_set_logout_pending( <span class="hljs-keyword">true</span> );
+	}
+
+	<span class="hljs-keyword">elseif</span> ( CAS == config_get( <span class="hljs-string">'login_method'</span> ) ) {
+	        <span class="hljs-comment"># Redirect to CAS page to logout</span>
+        	auth_cas_logout();
+	}
+
+	session_clean();
+}
+</code></pre>
+<pre><code class="language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">auth_automatic_logon_bypass_form</span><span class="hljs-params">()</span> </span>{
+        <span class="hljs-keyword">switch</span>( config_get( <span class="hljs-string">'login_method'</span> ) ) {
+                <span class="hljs-keyword">case</span> HTTP_AUTH:
+                        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+                <span class="hljs-keyword">case</span> CAS:
+                        <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+        <span class="hljs-comment">//return config_get_global( 'login_method' ) == HTTP_AUTH;</span>
+}
+</code></pre>
+<pre><code class="language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">auth_does_password_match</span><span class="hljs-params">( $p_user_id, $p_test_password )</span> </span>{
+	$t_configured_login_method = config_get_global( <span class="hljs-string">'login_method'</span> );
+
+	<span class="hljs-keyword">if</span>( LDAP == $t_configured_login_method ) {
+		<span class="hljs-keyword">return</span> ldap_authenticate( $p_user_id, $p_test_password );
+	}
+
+	<span class="hljs-keyword">elseif</span> ( CAS == $t_configured_login_method ) {
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+	}
+
+	<span class="hljs-keyword">if</span>( !auth_can_use_standard_login( $p_user_id ) ) {
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+	}
+
+	$t_password = user_get_field( $p_user_id, <span class="hljs-string">'password'</span> );
+	$t_login_methods = <span class="hljs-keyword">array</span>(
+		MD5,
+		CRYPT,
+		PLAIN,
+		BASIC_AUTH,
+		CAS,
+	);
+
+	<span class="hljs-keyword">foreach</span>( $t_login_methods <span class="hljs-keyword">as</span> $t_login_method ) {
+		<span class="hljs-comment"># pass the stored password in as the salt</span>
+		<span class="hljs-keyword">if</span>( auth_process_plain_password( $p_test_password, $t_password, $t_login_method ) == $t_password ) {
+			<span class="hljs-comment"># Do not support migration to PLAIN, since this would be a crazy thing to do.</span>
+			<span class="hljs-comment"># Also if we do, then a user will be able to login by providing the MD5 value</span>
+			<span class="hljs-comment"># that is copied from the database.  See #8467 for more details.</span>
+			<span class="hljs-keyword">if</span>( ( $t_configured_login_method != PLAIN &amp;&amp; $t_login_method == PLAIN ) ||
+				( $t_configured_login_method != BASIC_AUTH &amp;&amp; $t_login_method == BASIC_AUTH ) ) {
+				<span class="hljs-keyword">continue</span>;
+			}
+
+			<span class="hljs-comment"># Check for migration to another login method and test whether the password was encrypted</span>
+			<span class="hljs-comment"># with our previously insecure implementation of the CRYPT method</span>
+			<span class="hljs-keyword">if</span>( ( $t_login_method != $t_configured_login_method ) || (( CRYPT == $t_configured_login_method ) &amp;&amp; mb_substr( $t_password, <span class="hljs-number">0</span>, <span class="hljs-number">2</span> ) == mb_substr( $p_test_password, <span class="hljs-number">0</span>, <span class="hljs-number">2</span> ) ) ) {
+				user_set_password( $p_user_id, $p_test_password, <span class="hljs-keyword">true</span> );
+			}
+
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+		}
+	}
+
+	<span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+}
+</code></pre>
+<pre><code class="language-php"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">auth_reauthenticate</span><span class="hljs-params">()</span> </span>{
+	<span class="hljs-comment">//if( !auth_reauthentication_enabled() || BASIC_AUTH == config_get_global( 'login_method' ) || HTTP_AUTH == config_get_global( 'login_method' ) ) {</span>
+	<span class="hljs-keyword">if</span>( !auth_reauthentication_enabled() || in_array(config_get(<span class="hljs-string">'login_method'</span>), <span class="hljs-keyword">array</span>(BASIC_AUTH, HTTP_AUTH, CAS)) ) {
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+	}
+
+	$t_auth_token = token_get( TOKEN_AUTHENTICATED );
+	<span class="hljs-keyword">if</span>( <span class="hljs-keyword">null</span> != $t_auth_token ) {
+		token_touch( $t_auth_token[<span class="hljs-string">'id'</span>], auth_reauthentication_expiry() );
+		<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+	} <span class="hljs-keyword">else</span> {
+		$t_anon_account = auth_anonymous_account();
+		$t_anon_allowed = auth_anonymous_enabled();
+
+		$t_user_id = auth_get_current_user_id();
+		$t_username = user_get_username( $t_user_id );
+
+		<span class="hljs-comment"># check for anonymous login</span>
+		<span class="hljs-keyword">if</span>( ON == $t_anon_allowed &amp;&amp; $t_anon_account == $t_username ) {
+			<span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+		}
+
+		$t_request_uri = string_url( $_SERVER[<span class="hljs-string">'REQUEST_URI'</span>] );
+
+		$t_query_params = http_build_query(
+			<span class="hljs-keyword">array</span>(
+				<span class="hljs-string">'reauthenticate'</span> =&gt; <span class="hljs-number">1</span>,
+				<span class="hljs-string">'username'</span> =&gt; $t_username,
+				<span class="hljs-string">'return'</span> =&gt; $t_request_uri,
+			),
+			<span class="hljs-string">''</span>, <span class="hljs-string">'&amp;'</span>
+		);
+
+		<span class="hljs-comment"># redirect to login page</span>
+		print_header_redirect( auth_credential_page( $t_query_params ) );
+	}
+}
+</code></pre>
+<h3>新建<code>login_cas.php</code>处理拦截利用<code>CAS</code>认证登录</h3>
+<pre><code class="language-bash"><span class="hljs-comment">#  vi /var/www/html/mantis/phpCAS/login_cas.php</span>
+</code></pre>
+<pre><code class="language-php"><span class="hljs-meta">&lt;?php</span>
+
+<span class="hljs-keyword">require_once</span>( <span class="hljs-string">'CAS.php'</span> );
+define(<span class="hljs-string">'CAS_ENABLE'</span>, <span class="hljs-keyword">true</span>);
+$cas_host = <span class="hljs-string">'devops.iamzhl.top'</span>;
+$cas_context = <span class="hljs-string">'/cas'</span>;
+$cas_port = <span class="hljs-number">8080</span>;
+$cas_real_hosts = <span class="hljs-keyword">array</span> (
+	<span class="hljs-string">'devops.iamzhl.top'</span>
+);
+
+phpCAS::setDebug();
+phpCAS::setVerbose(<span class="hljs-keyword">true</span>);
+phpCAS::client(CAS_VERSION_2_0, $cas_host, $cas_port, $cas_context);
+phpCAS::setNoCasServerValidation();
+phpCAS::handleLogoutRequests(<span class="hljs-keyword">true</span>, $cas_real_hosts);
+phpCAS::forceAuthentication();
+<span class="hljs-meta">?&gt;</span>
+
+</code></pre>
+<h3>修改<code>CAS</code>的<code>Client.php</code>启用<code>http</code>连接(根据个人<code>CAS</code>服务器来定)</h3>
+<pre><code class="language-bash"><span class="hljs-comment"># vi /var/www/html/mantis/phpCAS/source/CAS/Client.php</span>
+</code></pre>
+<blockquote>
+<p>将如下几个函数中的https改为http即可</p>
+</blockquote>
+<pre><code class="language-php"><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_getServerBaseURL</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// the URL is build only when needed</span>
+        <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">empty</span>(<span class="hljs-keyword">$this</span>-&gt;_server[<span class="hljs-string">'base_url'</span>]) ) {
+            <span class="hljs-comment">//$this-&gt;_server['base_url'] = 'https://' . $this-&gt;_getServerHostname();</span>
+            <span class="hljs-keyword">$this</span>-&gt;_server[<span class="hljs-string">'base_url'</span>] = <span class="hljs-string">'http://'</span> . <span class="hljs-keyword">$this</span>-&gt;_getServerHostname();
+            <span class="hljs-keyword">if</span> (<span class="hljs-keyword">$this</span>-&gt;_getServerPort()!=<span class="hljs-number">443</span>) {
+                <span class="hljs-keyword">$this</span>-&gt;_server[<span class="hljs-string">'base_url'</span>] .= <span class="hljs-string">':'</span>
+                .<span class="hljs-keyword">$this</span>-&gt;_getServerPort();
+            }
+            <span class="hljs-keyword">$this</span>-&gt;_server[<span class="hljs-string">'base_url'</span>] .= <span class="hljs-keyword">$this</span>-&gt;_getServerURI();
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;_server[<span class="hljs-string">'base_url'</span>];
+    }
+</code></pre>
+<pre><code class="language-php"><span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">_getCallbackURL</span><span class="hljs-params">()</span>
+    </span>{
+        <span class="hljs-comment">// the URL is built when needed only</span>
+        <span class="hljs-keyword">if</span> ( <span class="hljs-keyword">empty</span>(<span class="hljs-keyword">$this</span>-&gt;_callback_url) ) {
+            $final_uri = <span class="hljs-string">''</span>;
+            <span class="hljs-comment">// remove the ticket if present in the URL</span>
+            <span class="hljs-comment">//$final_uri = 'https://';</span>
+            $final_uri = <span class="hljs-string">'http://'</span>;
+            $final_uri .= <span class="hljs-keyword">$this</span>-&gt;_getClientUrl();
+            $request_uri = $_SERVER[<span class="hljs-string">'REQUEST_URI'</span>];
+            $request_uri = preg_replace(<span class="hljs-string">'/\?.*$/'</span>, <span class="hljs-string">''</span>, $request_uri);
+            $final_uri .= $request_uri;
+            <span class="hljs-keyword">$this</span>-&gt;_callback_url = $final_uri;
+        }
+        <span class="hljs-keyword">return</span> <span class="hljs-keyword">$this</span>-&gt;_callback_url;
+    }
+</code></pre>
+<pre><code>public function getURL()
+    {
+        phpCAS::traceBegin();
+        // the URL is built when needed only
+        if ( empty($this-&gt;_url) ) {
+            $final_uri = '';
+            // remove the ticket if present in the URL
+            //$final_uri = ($this-&gt;_isHttps()) ? 'https' : 'http';
+            $final_uri = ($this-&gt;_isHttps()) ? 'http' : 'http';
+            $final_uri .= '://';
+
+            $final_uri .= $this-&gt;_getClientUrl();
+            $request_uri        = explode('?', $_SERVER['REQUEST_URI'], 2);
+            $final_uri          .= $request_uri[0];
+
+            if (isset($request_uri[1]) &amp;&amp; $request_uri[1]) {
+                $query_string= $this-&gt;_removeParameterFromQueryString('ticket', $request_uri[1]);
+
+                // If the query string still has anything left,
+                // append it to the final URI
+                if ($query_string !== '') {
+                    $final_uri  .= &quot;?$query_string&quot;;
+                }
+            }
+
+            phpCAS::trace(&quot;Final URI: $final_uri&quot;);
+            $this-&gt;setURL($final_uri);
+        }
+        phpCAS::traceEnd($this-&gt;_url);
+        return $this-&gt;_url;
+    }
+</code></pre>
+<h3>测试</h3>
+<blockquote>
+<p>新建<code>log</code>目录</p>
+</blockquote>
+<pre><code class="language-bash"><span class="hljs-comment"># mkdir /var/log/mantis</span>
+<span class="hljs-comment"># chown -R apache:apache /var/log/mantis</span>
+</code></pre>
+<p>打开<code>MantisBT</code>网址，正常跳转至<code>CAS</code>登录界面，网址是<code>http://devops.iamzhl.top:8080/cas/login?service=http%3A%2F%2Fdevops.iamzhl.top%2Fmantis%2Flogin_page.php</code></p>
+<p><img src="https://gitee.com/athlonreg/picbed/raw/master/Images/fa/f707556ce41d95b71052d07834f5d8.jpg" alt=""></p>
+<p>如图，输入用户名密码后点击登录，正常登陆后跳转至<code>MantisBT</code>主页，并且正常获取用户名</p>
+<p><img src="https://gitee.com/athlonreg/picbed/raw/master/Images/49/1365298ec15c90fbf95612a38606ed.jpg" alt=""></p>
+<p>点击右上角的用户名 -&gt; 注销，会正常退出并跳转到<code>CAS</code>的登出界面</p>
+<p><img src="https://gitee.com/athlonreg/picbed/raw/master/Images/85/2d25e40bdf97b6f06dad6239cf3167.jpg" alt=""></p>
+</div></section><footer class="footer-container"><div class="footer-body"><img src="/img/dubbo_gray.png"/><div class="cols-container"><div class="col col-12"><h3>免责声明</h3><p>文档所有内容遵循开源协议</p></div><div class="col col-6"><dl><dt>文档</dt><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">概览</a></dd><dd><a href="/zh-cn/docs/CAS-5-3-4-install-and-deploy.html" target="_self">快速开始</a></dd><dd><a href="/zh-cn/docs/dir/CAS-5-3-4-install-and-deploy.html" target="_self">开发者指南</a></dd></dl></div><div class="col col-6"><dl><dt>资源</dt><dd><a href="/zh-cn/blog/index.html" target="_self">博客</a></dd><dd><a href="/zh-cn/community/index.html" target="_self">社区</a></dd></dl></div></div><div class="copyright"><span>Copyright © 2018 https://blog.iamzhl.top/</span></div></div></footer></div></div>
+	<script src="https://f.alicdn.com/react/15.4.1/react-with-addons.min.js"></script>
+	<script src="https://f.alicdn.com/react/15.4.1/react-dom.min.js"></script>
+	<script>
+		window.rootPath = '';
+  </script>
+	<script src="/build/documentation.js"></script>
+</body>
+</html>
